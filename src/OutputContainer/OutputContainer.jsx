@@ -4,7 +4,8 @@ export default class OutputContainer extends React.PureComponent{
     render() {
         return(
             <div>
-                Here will be resulting output
+                {this.props.data.errors}
+                {this.props.data.output}
             </div>
         )
     }

@@ -4,8 +4,23 @@ import TaskContainer from "../TaskContainer/TaskContainer";
 import CodeEditor from "../CodeEditor/CodeEditor";
 import OutputContainer from "../OutputContainer/OutputContainer";
 import './ContentContainer.css'
+import postData from "../RestService";
+import {codeRunnerUrl} from "../constants";
 
 export default class ContentContainer extends React.PureComponent {
+
+    state = {
+        result: {
+            errors: [],
+            output: []
+        }
+    };
+
+    handleSubmit = (data) => {
+        postData(codeRunnerUrl, data)
+            .then(result => this.setState({result}));
+    };
+
     render() {
         return (
             <div>
@@ -15,10 +30,10 @@ export default class ContentContainer extends React.PureComponent {
                             <TaskContainer/>
                         </Col>
                         <Col className='editor-col'>
-                            <CodeEditor/>
+                            <CodeEditor handleSubmit={this.handleSubmit}/>
                         </Col>
                         <Col className='output-col' sm={4}>
-                            <OutputContainer/>
+                            <OutputContainer data={this.state.result}/>
                         </Col>
                     </Row>
                 </Container>
