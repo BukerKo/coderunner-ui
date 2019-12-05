@@ -5,8 +5,8 @@ export default class TaskContainer extends React.PureComponent{
 
     render() {
         return (
-            <div>
-                Here will be some task
+            <div className="task">
+                Print out "Hello World!"
             </div>
         )
     }

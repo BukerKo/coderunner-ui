@@ -2,13 +2,31 @@ import * as React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./CodeEitor.css"
-import { initialClassName, initialCode } from "../constants";
+import {INDENTSYMBOL, initialClassName, initialCode, TABKEY} from "../constants";
 
 export default class CodeEditor extends React.PureComponent {
+
+    inputRef = React.createRef();
 
     state = {
         sourceCode: initialCode,
         className: initialClassName
+    };
+
+    handleKeyDown = event => {
+        if (event.keyCode === TABKEY) {
+            event.preventDefault();
+            this.addTabToCode(event.target);
+        }
+    };
+
+    addTabToCode = ({selectionStart, selectionEnd}) => {
+        const {sourceCode} = this.state;
+        this.setState({
+            sourceCode: sourceCode.substring(0, selectionStart) + INDENTSYMBOL + sourceCode.substring(selectionEnd)
+        }, () => {
+            this.inputRef.current.selectionStart = this.inputRef.current.selectionEnd = selectionStart + INDENTSYMBOL.length;
+        })
     };
 
     handleChange = event => {
@@ -34,7 +52,10 @@ export default class CodeEditor extends React.PureComponent {
     render() {
         return (
             <Form>
-                <Form.Control as={"textarea"} onChange={this.handleChange} value={this.state.sourceCode}/>
+                <Form.Control as={"textarea"} ref={this.inputRef}
+                              onKeyDown={this.handleKeyDown}
+                              onChange={this.handleChange}
+                              value={this.state.sourceCode}/>
                 <Button variant="primary" type="submit" onClick={this.handleSubmit}>
                     Run
                 </Button>

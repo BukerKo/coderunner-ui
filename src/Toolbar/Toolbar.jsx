@@ -7,7 +7,7 @@ export default class Toolbar extends React.PureComponent {
     render() {
         return (
             <Navbar>
-                <Navbar.Brand>Some mockup</Navbar.Brand>
+                <Navbar.Brand>Hello, username!</Navbar.Brand>
             </Navbar>
         )
     }
