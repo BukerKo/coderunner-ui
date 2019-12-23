@@ -1,6 +1,8 @@
 .output {
-    white-space: pre;
-    margin-top: 50px;
-    font-family: "Segoe UI", serif;
-    font-size: 25px;
+    width: 100%;
+    word-break: break-word;
+    padding-right: 5%;
+    font-family: Segoe UI, serif;
+    font-size:25px;
+    padding-top:50px;
 }
