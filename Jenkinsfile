@@ -18,7 +18,7 @@ pipeline {
         branch 'release/*'
       }
       steps {
-        sh 'cp -r ${WORKSPACE}/build /var/www/coderunner'
+        sh 'cp -r ${WORKSPACE}/build/. /var/www/coderunner'
       }
     }
   }
