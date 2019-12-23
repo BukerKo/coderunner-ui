@@ -13,7 +13,6 @@ pipeline {
       }
     }
 
-
     stage('deploy:prod') {
       when {
         branch 'release/*'
