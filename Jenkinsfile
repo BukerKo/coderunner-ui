@@ -1,23 +1,28 @@
 pipeline {
   agent any
   stages {
-    stage('install') {
+    stage('npm:install') {
       steps {
         sh 'npm install'
       }
     }
 
-    stage('build') {
+    stage('npm:build') {
       steps {
         sh 'npm build'
       }
     }
 
-    stage('') {
+    stage('deploy:prod') {
+      when {
+        branch 'release/*'
+      }
       steps {
-        waitUntil()
+        cp -r /var/www/coderunner/build /var/www/tmp
+        rm -rf /var/www/coderunner/build
+        cp -r /var/www/tmp/* /var/www/coderunner
+        rm -rf /var/www/tmp
       }
     }
-
   }
 }
