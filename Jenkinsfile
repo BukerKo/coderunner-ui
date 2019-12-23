@@ -18,10 +18,7 @@ pipeline {
         branch 'release/*'
       }
       steps {
-        sh 'cp -r /var/www/coderunner/build /var/www/tmp'
-        sh 'rm -rf /var/www/coderunner/build'
-        sh 'cp -r /var/www/tmp/* /var/www/coderunner'
-        sh 'rm -rf /var/www/tmp'
+        sh 'cp -r build /var/www/coderunner'
       }
     }
   }
