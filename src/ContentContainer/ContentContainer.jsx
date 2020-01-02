@@ -17,8 +17,12 @@ export default class ContentContainer extends React.PureComponent {
     };
 
     handleSubmit = (data) => {
+        this.props.setLoading(true);
         postData(codeRunnerUrl, data)
-            .then(result => this.setState({result}));
+            .then(result => {
+                this.setState({result});
+                this.props.setLoading(false);
+            });
     };
 
     render() {
