@@ -1,5 +1,6 @@
 {
   "name": "code-runner",
+  "homepage": "https://coderunner.tcomad.tk",
   "version": "1.2.0",
   "private": true,
   "dependencies": {
