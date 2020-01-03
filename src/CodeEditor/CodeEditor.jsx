@@ -1,37 +1,22 @@
 import * as React from "react";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import "./CodeEitor.css"
-import {INDENTSYMBOL, initialClassName, initialCode, TABKEY} from "../constants";
+import "./CodeEditor.css"
+import {initialClassName, initialCode} from "../constants";
+import AceEditor from "react-ace";
+
+import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/ext-language_tools";
+import "ace-builds/src-noconflict/theme-crimson_editor";
 
 export default class CodeEditor extends React.PureComponent {
-
-    inputRef = React.createRef();
 
     state = {
         sourceCode: initialCode,
         className: initialClassName
     };
 
-    handleKeyDown = event => {
-        if (event.keyCode === TABKEY) {
-            event.preventDefault();
-            this.addTabToCode(event.target);
-        }
-    };
-
-    addTabToCode = ({selectionStart, selectionEnd}) => {
-        const {sourceCode} = this.state;
-        this.setState({
-            sourceCode: sourceCode.substring(0, selectionStart) + INDENTSYMBOL + sourceCode.substring(selectionEnd)
-        }, () => {
-            this.inputRef.current.selectionStart = this.inputRef.current.selectionEnd = selectionStart + INDENTSYMBOL.length;
-        })
-    };
-
-    handleChange = event => {
-        console.log(event);
-        this.setState({sourceCode: event.target.value});
+    handleChange = sourceCode => {
+        this.setState({sourceCode});
     };
 
     handleSubmit = event => {
@@ -51,15 +36,24 @@ export default class CodeEditor extends React.PureComponent {
 
     render() {
         return (
-            <Form>
-                <Form.Control as={"textarea"} ref={this.inputRef}
-                              onKeyDown={this.handleKeyDown}
-                              onChange={this.handleChange}
-                              value={this.state.sourceCode}/>
-                <Button variant="primary" type="submit" onClick={this.handleSubmit}>
+            <div className={"editor_div"}>
+                <AceEditor
+                    mode="java"
+                    theme="crimson_editor"
+                    showPrintMargin={false}
+                    fontSize={22}
+                    width={"100%"}
+                    height={"90%"}
+                    onChange={this.handleChange}
+                    enableBasicAutocompletion={true}
+                    enableLiveAutocompletion={true}
+                    editorProps={{ $blockScrolling: true }}
+                    value={this.state.sourceCode}
+                />
+                <Button className={"submit_button"} variant="primary" type="submit" onClick={this.handleSubmit}>
                     Run
                 </Button>
-            </Form>
+            </div>
         )
     }
 }

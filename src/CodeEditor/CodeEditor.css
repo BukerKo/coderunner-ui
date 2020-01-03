@@ -1,0 +1,13 @@
+.editor_div {
+    height: 100%;
+}
+
+.ace_editor {
+    border: #ececec 2px solid;
+    border-top: none;
+}
+
+.submit_button {
+    margin-top: 30px;
+    width: 100px;
+}
