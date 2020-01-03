@@ -3,6 +3,8 @@
 }
 
 .ace_editor {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     border: #ececec 2px solid;
     border-top: none;
 }
