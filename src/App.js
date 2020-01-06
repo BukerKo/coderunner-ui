@@ -1,45 +1,36 @@
 import React from 'react';
-import Toolbar from "./Toolbar/Toolbar";
 
-import ContentContainer from "./ContentContainer/ContentContainer";
-import ReactLoading from "react-loading";
-import LoadingOverlay from "react-loading-overlay";
+import StudentContent from "./Student/StudentContent/StudentContent";
+import {BrowserRouter, Redirect, Route} from "react-router-dom";
+import {Switch} from "react-bootstrap";
+import LoginComponent from "./Login/Login";
+import {CURRENT_USERNAME} from "./constants";
+import * as Cookies from "js-cookie";
 
-class App extends React.Component {
 
-    state = {
-        isLoading: false
-    };
+export default class App extends React.Component {
 
-    setLoading = (isLoading) => {
-        this.setState({isLoading});
+    isLoggedIn = () => {
+        return !!Cookies.get(CURRENT_USERNAME)
     };
 
     render() {
         return (
             <div className="App">
-                <LoadingOverlay
-                    styles={{
-                        overlay: (base) => ({
-                            ...base,
-                            background: "rgba(0, 0, 0, 0)"
-                        })
-                    }}
-                    active={this.state.isLoading}
-                    spinner={
-                        <div className="loader">
-                            <ReactLoading type={"spin"} color={"black"}/>
-                        </div>
-                    }
-                >
-
-                    <Toolbar/>
-                    <ContentContainer setLoading={this.setLoading}/>
-
-                </LoadingOverlay>
+                <BrowserRouter>
+                    <Switch>
+                        <Route exact path="/" component={LoginComponent} />
+                        <Route exact path="/login" component={LoginComponent} />
+                        <Route exact path="/student" render={() => (
+                            this.isLoggedIn() ? (
+                                <StudentContent/>
+                            ) : (
+                                <Redirect to="/login"/>
+                            )
+                        )}/>
+                    </Switch>
+                </BrowserRouter>
             </div>
         );
     }
 }
-
-export default App;

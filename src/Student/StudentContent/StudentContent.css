@@ -5,3 +5,7 @@
 .task-col {
     height: calc(100vh - 4rem);
 }
+
+.custom-switch {
+    padding-left: 0;
+}

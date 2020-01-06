@@ -1,18 +1,18 @@
 import * as React from "react";
 import Button from "react-bootstrap/Button";
 import "./CodeEditor.css"
-import {initialClassName, initialCode} from "../constants";
 import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/theme-crimson_editor";
+import {INITIAL_CLASS_NAME, INITIAL_CODE} from "../../constants";
 
 export default class CodeEditor extends React.PureComponent {
 
     state = {
-        sourceCode: initialCode,
-        className: initialClassName
+        sourceCode: INITIAL_CODE,
+        className: INITIAL_CLASS_NAME
     };
 
     handleChange = sourceCode => {
