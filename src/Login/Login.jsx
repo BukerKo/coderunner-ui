@@ -3,11 +3,9 @@ import {Button, Form} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import './Login.css'
 import {login} from "../Service/RestService";
-import {ACCESS_TOKEN, CURRENT_ROLE, CURRENT_USERNAME, ROLE_USER} from "../constants";
-import * as Cookies from "js-cookie";
 
 
-class LoginComponent extends React.Component {
+class Login extends React.Component {
 
     state = {
         usernameOrEmail: "",
@@ -34,12 +32,7 @@ class LoginComponent extends React.Component {
         login({usernameOrEmail: usernameOrEmail, password: password})
             .then(response => {
                 const {accessToken, role, username} = response;
-                Cookies.set(ACCESS_TOKEN, accessToken);
-                Cookies.set(CURRENT_ROLE, role);
-                Cookies.set(CURRENT_USERNAME, username);
-                if (role === ROLE_USER) {
-                    this.props.history.push('/student');
-                }
+                this.props.handleLogin(accessToken, role, username);
             }).catch(error => {
             if (error.status === 401) {
                 alert('Your Username or Password is incorrect. Please try again!');
@@ -78,4 +71,4 @@ class LoginComponent extends React.Component {
     }
 }
 
-export default LoginComponent
+export default Login

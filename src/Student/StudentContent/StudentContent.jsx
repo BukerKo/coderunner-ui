@@ -8,12 +8,9 @@ import LoadingOverlay from "react-loading-overlay";
 import ReactLoading from "react-loading";
 import {executeCode} from "../../Service/RestService";
 import Toolbar from "../../Toolbar/Toolbar";
-import {withRouter} from "react-router-dom";
-import * as Cookies from "js-cookie";
-import {ACCESS_TOKEN, CURRENT_ROLE, CURRENT_USERNAME} from "../../constants";
 
 
-class StudentContent extends React.PureComponent {
+export default class StudentContent extends React.PureComponent {
 
     state = {
         result: {
@@ -21,13 +18,6 @@ class StudentContent extends React.PureComponent {
             output: []
         },
         isLoading: false
-    };
-
-    handleLogout = () => {
-        Cookies.remove(CURRENT_USERNAME);
-        Cookies.remove(CURRENT_ROLE);
-        Cookies.remove(ACCESS_TOKEN);
-        this.props.history.push("/");
     };
 
     handleSubmit = (data) => {
@@ -42,11 +32,10 @@ class StudentContent extends React.PureComponent {
         })
     };
 
-
     render() {
         return (
             <div>
-                <Toolbar handleLogout={this.handleLogout}/>
+                <Toolbar handleLogout={this.props.handleLogout}/>
                 <LoadingOverlay
                     styles={{
                         overlay: (base) => ({
@@ -80,5 +69,3 @@ class StudentContent extends React.PureComponent {
         )
     }
 }
-
-export default withRouter(StudentContent)

@@ -46,10 +46,10 @@ export function signup(signupRequest) {
     });
 }
 
-export function executeCode(url, data) {
+export function executeCode(data) {
     return request({
         url: RUN_CODE_URL,
         method: 'POST',
         body: JSON.stringify(data)
-    }).then(response => response.json());
+    });
 }
