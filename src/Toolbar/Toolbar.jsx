@@ -1,9 +1,7 @@
 import * as React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import './Toolbar.css'
-import {CURRENT_USERNAME} from "../constants";
 import {Button} from "react-bootstrap";
-import * as Cookies from "js-cookie";
 
 
 export default class Toolbar extends React.PureComponent {
@@ -12,11 +10,17 @@ export default class Toolbar extends React.PureComponent {
         this.props.handleLogout();
     };
 
+
     render() {
+        let toolbarText = "Coderunner application";
+        const {username} = this.props;
+        if (username) {
+            toolbarText = "Hello, " + username + "!";
+        }
         return (
             <Navbar className="justify-content-between">
-                <Navbar.Brand>Hello, {Cookies.get(CURRENT_USERNAME)}!</Navbar.Brand>
-                <Button variant="info" onClick={this.handleLogout}>Logout</Button>
+                <Navbar.Brand>{toolbarText}</Navbar.Brand>
+                {username && <Button variant="info" onClick={this.handleLogout}>Logout</Button>}
             </Navbar>
         )
     }

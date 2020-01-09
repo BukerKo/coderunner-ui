@@ -34,8 +34,6 @@ export default class StudentContent extends React.PureComponent {
 
     render() {
         return (
-            <div>
-                <Toolbar handleLogout={this.props.handleLogout}/>
                 <LoadingOverlay
                     styles={{
                         overlay: (base) => ({
@@ -65,7 +63,6 @@ export default class StudentContent extends React.PureComponent {
                         </Row>
                     </Container>
                 </LoadingOverlay>
-            </div>
         )
     }
 }

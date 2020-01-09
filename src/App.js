@@ -1,20 +1,20 @@
 import React from 'react';
 
 import StudentContent from "./Student/StudentContent/StudentContent";
-import {Router, Redirect, Route} from "react-router-dom";
+import {Redirect, Route, withRouter} from "react-router-dom";
 import {Switch} from "react-bootstrap";
 import Login from "./Login/Login";
 import {ACCESS_TOKEN, CURRENT_ROLE, CURRENT_USERNAME, ROLE_USER} from "./constants";
 import * as Cookies from "js-cookie";
 
-import history from './history';
 import Signup from "./Signup/Signup";
+import Toolbar from "./Toolbar/Toolbar";
 
 
-export default class App extends React.Component {
+class App extends React.Component {
 
     isLoggedIn = () => {
-        return !!Cookies.get(CURRENT_USERNAME)
+        return !!Cookies.get(ACCESS_TOKEN)
     };
 
     handleLogout = () => {
@@ -24,7 +24,7 @@ export default class App extends React.Component {
                 Cookies.remove(prop);
             }
         }
-        history.push("/");
+        this.props.history.push("/");
     };
 
     handleLogin = (accessToken, role, username) => {
@@ -32,15 +32,15 @@ export default class App extends React.Component {
         Cookies.set(CURRENT_ROLE, role);
         Cookies.set(CURRENT_USERNAME, username);
         if (role === ROLE_USER) {
-            history.push('/student');
+            this.props.history.push('/student');
         }
     };
 
     render() {
         return (
-            <div className="App">
-                <Router history={history}>
-                    <Switch>
+            <div className="app">
+                <Toolbar username={Cookies.get(CURRENT_USERNAME)} handleLogout={this.handleLogout} />
+                <Switch>
                         <Route exact path={["/login", "/"]} >
                             <Login handleLogin={this.handleLogin} />
                         </Route>
@@ -55,8 +55,9 @@ export default class App extends React.Component {
                             )
                         )}/>
                     </Switch>
-                </Router>
             </div>
         );
     }
 }
+
+export default withRouter(App);

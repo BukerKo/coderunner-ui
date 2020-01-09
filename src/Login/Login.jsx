@@ -3,6 +3,8 @@ import {Button, Form} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import './Login.css'
 import {login} from "../Service/RestService";
+import fbLogo from "../img/fb-logo.png"
+import {FACEBOOK_AUTH_URL} from "../constants";
 
 
 class Login extends React.Component {
@@ -44,8 +46,12 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="Login">
-                <h1>Login</h1>
+            <div className="login">
+                <h1 className="login-title">Login</h1>
+                <SocialLogin />
+                <div className="or-separator">
+                    <span className="or-text">OR</span>
+                </div>
                 <Form onSubmit={this.handleSubmit} autoComplete='off' noValidate>
                     <Form.Group controlId="usernameOrEmail">
                         <Form.Label column={false}>Enter email address or username</Form.Label>
@@ -59,13 +65,19 @@ class Login extends React.Component {
                     <Button variant="primary" type="submit">
                         Login
                     </Button>
-
-                    <Link to={"/signup"}>
-                        <Button id={'register'} variant="secondary" type="button">
-                            Sign up
-                        </Button>
-                    </Link>
                 </Form>
+                <span className="signup-link">New user? <Link to="/signup">Sign up!</Link></span>
+            </div>
+        );
+    }
+}
+
+class SocialLogin extends React.Component {
+    render() {
+        return (
+            <div className="social-login">
+                <a className="btn-social btn-block social-btn facebook" href={FACEBOOK_AUTH_URL}>
+                    <img src={fbLogo} alt="Facebook" /> Log in with Facebook</a>
             </div>
         );
     }

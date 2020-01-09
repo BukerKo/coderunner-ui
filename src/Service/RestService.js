@@ -32,7 +32,7 @@ const request = (options) => {
 
 export function login(loginRequest) {
     return request({
-        url: AUTH_BASE_URL + "/signin",
+        url: AUTH_BASE_URL + "/login",
         method: 'POST',
         body: JSON.stringify(loginRequest)
     });

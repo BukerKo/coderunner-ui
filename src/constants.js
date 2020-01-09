@@ -1,6 +1,8 @@
 export const BASE_URL = "http://localhost:8080";
-export const AUTH_BASE_URL = BASE_URL + '/api/auth';
+export const AUTH_BASE_URL = BASE_URL + '/auth';
 export const RUN_CODE_URL = BASE_URL + "/run";
+export const OAUTH2_REDIRECT_URI = 'http://localhost:3000/oauth2/redirect';
+export const FACEBOOK_AUTH_URL = BASE_URL + '/oauth2/authorize/facebook?redirect_uri=' + OAUTH2_REDIRECT_URI;
 
 
 export const ACCESS_TOKEN = 'accessToken';
