@@ -13,6 +13,11 @@ import Toolbar from "./Toolbar/Toolbar";
 
 class App extends React.Component {
 
+    componentDidMount() {
+        const {token, role, username} = this.props.location.query;
+        this.handleLogin(token, role, username);
+    }
+
     isLoggedIn = () => {
         return !!Cookies.get(ACCESS_TOKEN)
     };
