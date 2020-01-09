@@ -14,8 +14,11 @@ import Toolbar from "./Toolbar/Toolbar";
 class App extends React.Component {
 
     componentDidMount() {
-        const {token, role, username} = this.props.location.query;
-        if (token && role && username) {
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get("token");
+        const role = params.get("role");
+        const username = params.get("username");
+         if (token && role && username) {
             this.handleLogin(token, role, username);
         }
     }
