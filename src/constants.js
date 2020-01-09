@@ -1,7 +1,7 @@
 export const BASE_URL = "https://rue.tcomad.tk";
 export const AUTH_BASE_URL = BASE_URL + '/auth';
 export const RUN_CODE_URL = BASE_URL + "/run";
-export const OAUTH2_REDIRECT_URI = 'http://localhost:3000/oauth2/redirect';
+export const OAUTH2_REDIRECT_URI = 'https://coderunner.tcomad.tk/student';
 export const FACEBOOK_AUTH_URL = BASE_URL + '/oauth2/authorize/facebook?redirect_uri=' + OAUTH2_REDIRECT_URI;
 
 
