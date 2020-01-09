@@ -15,7 +15,9 @@ class App extends React.Component {
 
     componentDidMount() {
         const {token, role, username} = this.props.location.query;
-        this.handleLogin(token, role, username);
+        if (token && role && username) {
+            this.handleLogin(token, role, username);
+        }
     }
 
     isLoggedIn = () => {
