@@ -22,4 +22,13 @@ pipeline {
       }
     }
   }
+
+    post {
+      success {
+        telegramSend 'coderunner-ui build status: success'
+      }
+      failure {
+        telegramSend 'coderunner-ui build status: failure'
+      }
+    }
 }
