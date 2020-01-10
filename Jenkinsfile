@@ -14,6 +14,9 @@ pipeline {
     }
 
     stage('deploy:prod') {
+      when {
+        branch 'master'
+      }
       steps {
         sh 'cp -r ${WORKSPACE}/build/. /var/www/coderunner'
       }
