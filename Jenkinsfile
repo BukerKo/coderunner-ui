@@ -26,7 +26,7 @@ pipeline {
       }
       steps {
         sh 'ssh -i ${KEY_LOCATION} ${AWS_DNS} sudo chmod -R 777 ${CODERUNNER_PATH}'
-        sh 'rsync -Pav -e "ssh -i ${KEY_LOCATION}" ${WORKSPACE}/build/ ${AWS_DNS}:${CODERUNNER_PATH}'
+        sh 'rsync -Pav0 -e "ssh -i ${KEY_LOCATION}" ${WORKSPACE}/build/ ${AWS_DNS}:${CODERUNNER_PATH}'
         sh 'ssh -i ${KEY_LOCATION} ${AWS_DNS} sudo chmod -R 755 ${CODERUNNER_PATH}'
        }
     }
