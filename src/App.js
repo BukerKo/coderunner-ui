@@ -41,13 +41,11 @@ class App extends React.Component {
     };
 
     handleLogout = () => {
-        const cookies = Cookies.getJSON();
-        for (let prop in cookies) {
-            if (Object.prototype.hasOwnProperty.call(cookies, prop)) {
-                Cookies.remove(prop);
-            }
-        }
-        window.FB.logout();
+        window.FB.logout(() =>  {
+            Cookies.remove(ACCESS_TOKEN);
+            Cookies.remove(CURRENT_ROLE);
+            Cookies.remove(CURRENT_USERNAME);
+        });
         this.props.history.push("/");
     };
 
