@@ -6,35 +6,28 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/theme-crimson_editor";
-import {INITIAL_CLASS_NAME, INITIAL_CODE} from "../../constants";
+import { SOURCECODE_KEY} from "../../constants";
 
 export default class CodeEditor extends React.PureComponent {
 
-    state = {
-        sourceCode: INITIAL_CODE,
-        className: INITIAL_CLASS_NAME
-    };
-
     handleChange = sourceCode => {
-        this.setState({sourceCode});
+        localStorage.setItem("sourceCode", sourceCode);
     };
 
     handleSubmit = event => {
         event.preventDefault();
-        this.setState({className: this.getClassName()}, () => {
-           this.props.handleSubmit(this.state);
-        });
-
+        this.props.handleSubmit(this.getClassName());
     };
 
     getClassName = () => {
-      const { sourceCode } = this.state;
+      const { sourceCode } = localStorage.getItem(SOURCECODE_KEY);
       const startPosition = sourceCode.indexOf("class") + "class".length + 1;
       const endPosition = sourceCode.indexOf("{", startPosition) - 1;
       return sourceCode.substring(startPosition, endPosition);
     };
 
     render() {
+        const sourceCode = localStorage.getItem(SOURCECODE_KEY);
         return (
             <div className={"editor_div"}>
                 <AceEditor
@@ -48,7 +41,7 @@ export default class CodeEditor extends React.PureComponent {
                     enableBasicAutocompletion={true}
                     enableLiveAutocompletion={true}
                     editorProps={{ $blockScrolling: true }}
-                    value={this.state.sourceCode}
+                    value={sourceCode}
                 />
                 <Button className={"submit_button"} variant="primary" type="submit" onClick={this.handleSubmit}>
                     Run

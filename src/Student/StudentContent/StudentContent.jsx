@@ -7,8 +7,7 @@ import './StudentContent.css'
 import LoadingOverlay from "react-loading-overlay";
 import ReactLoading from "react-loading";
 import {executeCode} from "../../Service/RestService";
-import Toolbar from "../../Toolbar/Toolbar";
-
+import {SOURCECODE_KEY} from "../../constants";
 
 export default class StudentContent extends React.PureComponent {
 
@@ -20,9 +19,14 @@ export default class StudentContent extends React.PureComponent {
         isLoading: false
     };
 
-    handleSubmit = (data) => {
+    handleSubmit = (className) => {
+        const requestBody = {
+            sourceCode: localStorage.getItem(SOURCECODE_KEY),
+            className
+        };
+
         this.setState({isLoading: true}, () => {
-            executeCode(data)
+            executeCode(requestBody)
                 .then(result => {
                     this.setState({
                         result,

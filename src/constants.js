@@ -4,6 +4,7 @@ export const RUN_CODE_URL = BASE_URL + "/run";
 export const OAUTH2_REDIRECT_URI = 'https://coderunner.tcomad.tk/login';
 export const FACEBOOK_AUTH_URL = BASE_URL + '/oauth2/authorize/facebook?redirect_uri=' + OAUTH2_REDIRECT_URI;
 
+export const SOURCECODE_KEY = "sourceCode";
 
 export const ACCESS_TOKEN = 'accessToken';
 export const CURRENT_ROLE = 'currentRole';

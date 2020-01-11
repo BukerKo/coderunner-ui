@@ -4,7 +4,14 @@ import StudentContent from "./Student/StudentContent/StudentContent";
 import {Redirect, Route, withRouter} from "react-router-dom";
 import {Switch} from "react-bootstrap";
 import Login from "./Login/Login";
-import {ACCESS_TOKEN, CURRENT_ROLE, CURRENT_USERNAME, ROLE_USER} from "./constants";
+import {
+    ACCESS_TOKEN,
+    CURRENT_ROLE,
+    CURRENT_USERNAME,
+    INITIAL_CODE,
+    ROLE_USER,
+    SOURCECODE_KEY
+} from "./constants";
 import * as Cookies from "js-cookie";
 
 import Signup from "./Signup/Signup";
@@ -41,6 +48,7 @@ class App extends React.Component {
         Cookies.set(ACCESS_TOKEN, accessToken);
         Cookies.set(CURRENT_ROLE, role);
         Cookies.set(CURRENT_USERNAME, username);
+        localStorage.setItem(SOURCECODE_KEY, INITIAL_CODE);
         if (role === ROLE_USER) {
             this.props.history.push('/student');
         }
