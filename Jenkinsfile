@@ -1,5 +1,12 @@
 pipeline {
   agent any
+
+  environment {
+    KEY_LOCATION = '~/Coderunner.pem'
+    CODERUNNER_PATH = '/var/www/coderunner'
+    AWS_DNS = 'ubuntu@ec2-18-222-208-138.us-east-2.compute.amazonaws.com'
+  }
+
   stages {
     stage('npm:install') {
       steps {
@@ -18,8 +25,12 @@ pipeline {
         branch 'master'
       }
       steps {
-        sh 'cp -r ${WORKSPACE}/build/. /var/www/coderunner'
-      }
+        sh 'ssh -i ${KEY_LOCATION} ${AWS_DNS} sudo rm -rf ${CODERUNNER_PATH}'
+        sh 'ssh -i ${KEY_LOCATION} ${AWS_DNS} sudo mkdir ${CODERUNNER_PATH}'
+        sh 'ssh -i ${KEY_LOCATION} ${AWS_DNS} sudo chmod 777 ${CODERUNNER_PATH}'
+        sh 'scp -i ${KEY_LOCATION} -r ${WORKSPACE}/build/* ${AWS_DNS}:${CODERUNNER_PATH}'
+        sh 'ssh -i ${KEY_LOCATION} ${AWS_DNS} sudo chmod -R 755 ${CODERUNNER_PATH}'
+       }
     }
   }
 

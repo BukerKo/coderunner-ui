@@ -22,7 +22,7 @@ class App extends React.Component {
 
     componentDidMount() {
         window.FB.init({
-            appId      : '848358615623604',
+            appId      : FACEBOOK_APP_ID,
             status     : true,
             xfbml      : true,
             version    : 'v2.7' // or v2.6, v2.5, v2.4, v2.3
