@@ -14,6 +14,12 @@ class Login extends React.Component {
         password: "",
     };
 
+    componentDidMount() {
+        if (this.props.isLoggedIn()) {
+            this.props.history.push("/student");
+        }
+    }
+
     handleChange = (event) => {
         event.preventDefault();
 

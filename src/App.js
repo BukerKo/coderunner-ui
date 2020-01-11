@@ -52,7 +52,7 @@ class App extends React.Component {
                 <Toolbar username={Cookies.get(CURRENT_USERNAME)} handleLogout={this.handleLogout} />
                 <Switch>
                         <Route exact path={["/login", "/"]} >
-                            <Login handleLogin={this.handleLogin} />
+                            <Login handleLogin={this.handleLogin} isLoggedIn={this.isLoggedIn}/>
                         </Route>
                         <Route exact path="/signup" component={Signup} >
                             <Signup handleLogin={this.handleLogin}/>
