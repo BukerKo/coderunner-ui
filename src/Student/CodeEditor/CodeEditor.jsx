@@ -6,12 +6,14 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/theme-crimson_editor";
-import { SOURCECODE_KEY} from "../../constants";
+import {SOURCECODE_KEY, TOOLTIP_TEXT} from "../../constants";
+import {OverlayTrigger, Tooltip} from "react-bootstrap";
+import questionImg from '../../img/ask.png'
 
 export default class CodeEditor extends React.PureComponent {
 
     handleChange = sourceCode => {
-        localStorage.setItem("sourceCode", sourceCode);
+        localStorage.setItem(SOURCECODE_KEY, sourceCode);
     };
 
     handleSubmit = event => {
@@ -20,10 +22,14 @@ export default class CodeEditor extends React.PureComponent {
     };
 
     getClassName = () => {
-      const sourceCode = localStorage.getItem(SOURCECODE_KEY);
-      const startPosition = sourceCode.indexOf("class") + "class".length + 1;
-      const endPosition = sourceCode.indexOf("{", startPosition) - 1;
-      return sourceCode.substring(startPosition, endPosition);
+        const sourceCode = localStorage.getItem(SOURCECODE_KEY);
+        const startPosition = sourceCode.indexOf("class") + "class".length + 1;
+        const endPosition = sourceCode.indexOf("{", startPosition) - 1;
+        return sourceCode.substring(startPosition, endPosition);
+    };
+
+    renderTooltip = (props) => {
+        return <Tooltip {...props} id="send_code_tooltip">{TOOLTIP_TEXT}</Tooltip>
     };
 
     render() {
@@ -39,12 +45,21 @@ export default class CodeEditor extends React.PureComponent {
                     onChange={this.handleChange}
                     enableBasicAutocompletion={true}
                     enableLiveAutocompletion={true}
-                    editorProps={{ $blockScrolling: true }}
+                    editorProps={{$blockScrolling: true}}
                     value={localStorage.getItem(SOURCECODE_KEY)}
                 />
-                <Button className={"submit_button"} variant="primary" type="submit" onClick={this.handleSubmit}>
+                <Button className="submit_button" variant="primary" type="submit" onClick={this.handleSubmit}>
                     Run
                 </Button>
+                <OverlayTrigger
+                    placement="top"
+                    delay={{show: 250, hide: 400}}
+                    overlay={this.renderTooltip}>
+                    <Button className="send_code_button" variant="secondary" onClick={this.props.sendCode}>
+                        Send code
+                        <img className="question_mark" width="20px" src={questionImg}  alt="question mark"/>
+                    </Button>
+                </OverlayTrigger>
             </div>
         )
     }

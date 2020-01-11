@@ -1,4 +1,4 @@
-import {ACCESS_TOKEN, AUTH_BASE_URL, RUN_CODE_URL, VERIFY_EMAIL_URL} from "../constants";
+import {ACCESS_TOKEN, AUTH_BASE_URL, RUN_CODE_URL, SEND_CODE_URL, VERIFY_EMAIL_URL} from "../constants";
 import * as Cookies from "js-cookie";
 
 
@@ -59,3 +59,12 @@ export function executeCode(data) {
         body: JSON.stringify(data)
     });
 }
+
+export function sendCode(data) {
+    return request({
+        url: SEND_CODE_URL,
+        method: 'POST',
+        body: JSON.stringify(data)
+    });
+}
+

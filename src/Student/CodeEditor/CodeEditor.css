@@ -1,5 +1,6 @@
 .editor_div {
     height: 100%;
+    align-content: space-between;
 }
 
 .ace_editor {
@@ -12,4 +13,14 @@
 .submit_button {
     margin-top: 30px;
     width: 100px;
+}
+
+.send_code_button {
+    margin-top: 30px;
+    width: 150px;
+    float: right;
+}
+
+.question_mark {
+    margin-left: 15px;
 }
