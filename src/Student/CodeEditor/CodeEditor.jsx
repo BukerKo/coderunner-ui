@@ -20,14 +20,13 @@ export default class CodeEditor extends React.PureComponent {
     };
 
     getClassName = () => {
-      const { sourceCode } = localStorage.getItem(SOURCECODE_KEY);
+      const sourceCode = localStorage.getItem(SOURCECODE_KEY);
       const startPosition = sourceCode.indexOf("class") + "class".length + 1;
       const endPosition = sourceCode.indexOf("{", startPosition) - 1;
       return sourceCode.substring(startPosition, endPosition);
     };
 
     render() {
-        const sourceCode = localStorage.getItem(SOURCECODE_KEY);
         return (
             <div className={"editor_div"}>
                 <AceEditor
@@ -41,7 +40,7 @@ export default class CodeEditor extends React.PureComponent {
                     enableBasicAutocompletion={true}
                     enableLiveAutocompletion={true}
                     editorProps={{ $blockScrolling: true }}
-                    value={sourceCode}
+                    value={localStorage.getItem(SOURCECODE_KEY)}
                 />
                 <Button className={"submit_button"} variant="primary" type="submit" onClick={this.handleSubmit}>
                     Run
