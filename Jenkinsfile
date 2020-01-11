@@ -28,7 +28,7 @@ pipeline {
         sh 'ssh -i ${KEY_LOCATION} ${AWS_DNS} sudo rm -rf ${CODERUNNER_PATH}'
         sh 'ssh -i ${KEY_LOCATION} ${AWS_DNS} sudo mkdir ${CODERUNNER_PATH}'
         sh 'ssh -i ${KEY_LOCATION} ${AWS_DNS} sudo chmod 777 ${CODERUNNER_PATH}'
-        sh 'scp -i ${KEY_LOCATION} -r ${WORKSPACE}/build/. ${AWS_DNS}:${CODERUNNER_PATH}'
+        sh 'scp -i ${KEY_LOCATION} -rp ${WORKSPACE}/build/. ${AWS_DNS}:${CODERUNNER_PATH}/'
         sh 'ssh -i ${KEY_LOCATION} ${AWS_DNS} sudo chmod -R 755 ${CODERUNNER_PATH}'
        }
     }
