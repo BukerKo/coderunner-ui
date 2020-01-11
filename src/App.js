@@ -7,7 +7,7 @@ import Login from "./Login/Login";
 import {
     ACCESS_TOKEN,
     CURRENT_ROLE,
-    CURRENT_USERNAME,
+    CURRENT_USERNAME, FACEBOOK_APP_ID,
     INITIAL_CODE,
     ROLE_USER,
     SOURCECODE_KEY
@@ -41,6 +41,12 @@ class App extends React.Component {
                 Cookies.remove(prop);
             }
         }
+        window.FB.init({
+            appId      : FACEBOOK_APP_ID,
+            status     : true,
+            xfbml      : true,
+            version    : 'v2.7'
+        });
         window.FB.logout();
         this.props.history.push("/");
     };
