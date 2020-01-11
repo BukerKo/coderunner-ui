@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Button, Form} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import './Login.css'
 import {login} from "../Service/RestService";
 import fbLogo from "../img/fb-logo.png"
@@ -89,4 +89,4 @@ class SocialLogin extends React.Component {
     }
 }
 
-export default Login
+export default withRouter(Login)
