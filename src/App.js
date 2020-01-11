@@ -41,6 +41,7 @@ class App extends React.Component {
                 Cookies.remove(prop);
             }
         }
+        window.FB.logout();
         this.props.history.push("/");
     };
 
