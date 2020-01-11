@@ -5,9 +5,9 @@ import {Redirect, Route, withRouter} from "react-router-dom";
 import {Switch} from "react-bootstrap";
 import Login from "./Login/Login";
 import {
-    ACCESS_TOKEN,
+    ACCESS_TOKEN, CURRENT_PROVIDER,
     CURRENT_ROLE,
-    CURRENT_USERNAME, FACEBOOK_APP_ID,
+    CURRENT_USERNAME, FACEBOOK_APP_ID, FACEBOOK_PROVIDER,
     INITIAL_CODE,
     ROLE_USER,
     SOURCECODE_KEY
@@ -31,8 +31,9 @@ class App extends React.Component {
         const token = params.get("token");
         const role = params.get("role");
         const username = params.get("username");
-         if (token && role && username) {
-            this.handleLogin(token, role, username);
+        const provider = params.get("provider");
+         if (token && role && username && provider) {
+            this.handleLogin(token, role, username, provider);
         }
     }
 
@@ -41,21 +42,30 @@ class App extends React.Component {
     };
 
     handleLogout = () => {
-        window.FB.logout(() => {
-            const cookies = Cookies.getJSON();
-            for (let prop in cookies) {
-                if (Object.prototype.hasOwnProperty.call(cookies, prop)) {
-                    Cookies.remove(prop);
-                }
-            }
-            this.props.history.push("/");
-        });
+        if (Cookies.get(CURRENT_PROVIDER) === FACEBOOK_PROVIDER) {
+            window.FB.logout(() => {
+                this.logout();
+            });
+        } else {
+            this.logout();
+        }
     };
 
-    handleLogin = (accessToken, role, username) => {
+    logout = () => {
+        const cookies = Cookies.getJSON();
+        for (let prop in cookies) {
+            if (Object.prototype.hasOwnProperty.call(cookies, prop)) {
+                Cookies.remove(prop);
+            }
+        }
+        this.props.history.push("/");
+    };
+
+    handleLogin = (accessToken, role, username, provider) => {
         Cookies.set(ACCESS_TOKEN, accessToken);
         Cookies.set(CURRENT_ROLE, role);
         Cookies.set(CURRENT_USERNAME, username);
+        Cookies.set(CURRENT_PROVIDER, provider);
         localStorage.setItem(SOURCECODE_KEY, INITIAL_CODE);
         if (role === ROLE_USER) {
             this.props.history.push('/student');

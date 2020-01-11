@@ -39,8 +39,8 @@ class Login extends React.Component {
 
         login({usernameOrEmail: usernameOrEmail, password: password})
             .then(response => {
-                const {accessToken, role, username} = response;
-                this.props.handleLogin(accessToken, role, username);
+                const {accessToken, role, username, provider} = response;
+                this.props.handleLogin(accessToken, role, username, provider);
             }).catch(error => {
             if (error.status === 401) {
                 alert('Your Username or Password is incorrect. Please try again!');

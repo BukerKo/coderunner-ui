@@ -9,8 +9,12 @@ export const SOURCECODE_KEY = "sourceCode";
 export const ACCESS_TOKEN = 'accessToken';
 export const CURRENT_ROLE = 'currentRole';
 export const CURRENT_USERNAME = 'currentUsername';
+export const CURRENT_PROVIDER = 'currentProvider';
 
 export const FACEBOOK_APP_ID = '848358615623604';
+
+export const FACEBOOK_PROVIDER = "facebook";
+export const LOCAL_PROVIDER = "local";
 
 export const ROLE_ADMIN = 'ROLE_ADMIN';
 export const ROLE_USER = 'ROLE_USER';

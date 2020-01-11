@@ -28,8 +28,8 @@ export default class Signup extends React.Component {
         } else {
             signup(signupRequest)
                 .then(response => {
-                    const {accessToken, role, username} = response;
-                    this.props.handleLogin(accessToken, role, username);
+                    const {accessToken, role, username, provider} = response;
+                    this.props.handleLogin(accessToken, role, username, provider);
                 }).catch(error => {
                 alert(error.message || 'Sorry! Something went wrong. Please try again!');
             });
