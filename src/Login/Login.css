@@ -1,15 +1,9 @@
 .login {
     width: 400px;
-    padding-top: 100px;
-    margin: auto;
-}
-
-#register {
-    float: right;
-}
-
-.h1 {
-    margin: auto;
+    padding: 35px;
+    margin: 50px auto auto;
+    text-align: center;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
 }
 
 .btn-social {
@@ -20,7 +14,6 @@
     touch-action: manipulation;
     cursor: pointer;
     background-image: none;
-    border: 1px solid transparent;
     white-space: nowrap;
     padding: 0 20px;
     font-size: 14px;
@@ -36,7 +29,7 @@
     position: relative;
     color: rgba(0,0,0,.65);
     background-color: transparent;
-    border-color: #e8e8e8;
+    border: 1px solid #e8e8e8;
     outline: none;
 }
 
@@ -73,6 +66,8 @@
 .signup-link {
     color: rgba(0, 0, 0, 0.65);
     font-size: 14px;
+    margin: auto;
+    text-align: center;
 }
 
 .or-separator {
@@ -93,3 +88,9 @@
     padding: 10px;
     color: rgba(0,0,0,.45);
 }
+
+.login-button {
+    margin-bottom: 10px;
+    width: 100%;
+}
+

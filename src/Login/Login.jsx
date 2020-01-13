@@ -60,15 +60,13 @@ class Login extends React.Component {
                 </div>
                 <Form onSubmit={this.handleSubmit} autoComplete='off' noValidate>
                     <Form.Group controlId="usernameOrEmail">
-                        <Form.Label column={false}>Enter email address or username</Form.Label>
                         <Form.Control type="usernameOrEmail" placeholder="Username/Email" onChange={this.handleChange}/>
                     </Form.Group>
 
                     <Form.Group controlId="password">
-                        <Form.Label column={false}>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password" onChange={this.handleChange}/>
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button className="login-button" variant="primary" type="submit">
                         Login
                     </Button>
                 </Form>

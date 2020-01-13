@@ -44,7 +44,7 @@ export default class Signup extends React.Component {
     render() {
         return (
             <div className="register">
-                <h1>Sign up</h1>
+                <h1 className={"signup-title"}>Sign up</h1>
                 <Form onSubmit={this.handleSubmit} autoComplete='off'>
                     <Form.Group controlId="username">
                         <Form.Label column={false}>Username</Form.Label>
@@ -66,7 +66,7 @@ export default class Signup extends React.Component {
                         <Form.Control type="email" placeholder="example@email.com" onChange={this.handleChange}/>
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">
+                    <Button className="signup-button" variant="primary" type="submit">
                         Sign up
                     </Button>
                 </Form>
