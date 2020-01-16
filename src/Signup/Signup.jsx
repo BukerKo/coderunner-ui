@@ -6,7 +6,8 @@ import './Signup.css'
 export default class Signup extends React.Component {
 
     state = {
-        username: '',
+        firstName: '',
+        lastName: '',
         password: '',
         email: '',
         repeatPassword: ''
@@ -14,18 +15,19 @@ export default class Signup extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const {username, password, repeatPassword, email} = this.state;
-        const signupRequest = {
-            username,
-            password,
-            email
-        };
+        const {firstName, lastName, password, repeatPassword, email} = this.state;
 
-        if (!(username && password && repeatPassword && email)) {
+        if (!(firstName && lastName && password && repeatPassword && email)) {
             alert('All fields should be filled');
         } else if (password !== repeatPassword) {
             alert('Password confirmation does not match actual password')
         } else {
+            const username = firstName + ' ' + lastName;
+            const signupRequest = {
+                username,
+                password,
+                email
+            };
             signup(signupRequest)
                 .then(response => {
                     const {accessToken, role, username, provider} = response;
@@ -46,9 +48,14 @@ export default class Signup extends React.Component {
             <div className="register">
                 <h1 className={"signup-title"}>Sign up</h1>
                 <Form onSubmit={this.handleSubmit} autoComplete='off'>
-                    <Form.Group controlId="username">
-                        <Form.Label column={false}>Username</Form.Label>
-                        <Form.Control type="username" placeholder="Username" onChange={this.handleChange}/>
+                    <Form.Group controlId="firstName">
+                        <Form.Label column={false}>First name</Form.Label>
+                        <Form.Control type="username" placeholder="First name" onChange={this.handleChange}/>
+                    </Form.Group>
+
+                    <Form.Group controlId="lastName">
+                        <Form.Label column={false}>Last name</Form.Label>
+                        <Form.Control type="username" placeholder="Last name" onChange={this.handleChange}/>
                     </Form.Group>
 
                     <Form.Group controlId="password">

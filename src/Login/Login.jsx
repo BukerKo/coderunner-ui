@@ -60,7 +60,7 @@ class Login extends React.Component {
                 </div>
                 <Form onSubmit={this.handleSubmit} autoComplete='off' noValidate>
                     <Form.Group controlId="usernameOrEmail">
-                        <Form.Control type="usernameOrEmail" placeholder="Username/Email" onChange={this.handleChange}/>
+                        <Form.Control type="usernameOrEmail" placeholder="Email" onChange={this.handleChange}/>
                     </Form.Group>
 
                     <Form.Group controlId="password">
