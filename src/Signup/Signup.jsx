@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Button, Form} from "react-bootstrap";
-import {signup} from "../Service/RestService";
+import {signup, verifyEmail} from "../Service/RestService";
 import './Signup.css'
 
 export default class Signup extends React.Component {
@@ -13,7 +13,7 @@ export default class Signup extends React.Component {
         repeatPassword: ''
     };
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
         const {firstName, lastName, password, repeatPassword, email} = this.state;
 
@@ -21,6 +21,8 @@ export default class Signup extends React.Component {
             alert('All fields should be filled');
         } else if (password !== repeatPassword) {
             alert('Password confirmation does not match actual password')
+        } else if (!await this.emailVerified(email)) {
+            alert('Use existing email')
         } else {
             const username = firstName + ' ' + lastName;
             const signupRequest = {
@@ -36,6 +38,11 @@ export default class Signup extends React.Component {
                 alert(error.message || 'Sorry! Something went wrong. Please try again!');
             });
         }
+    };
+
+    emailVerified = async (email) => {
+        const {deliverable} = await verifyEmail(email);
+        return deliverable;
     };
 
     handleChange = (event) => {

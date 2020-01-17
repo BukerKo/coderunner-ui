@@ -1,4 +1,4 @@
-import {ACCESS_TOKEN, AUTH_BASE_URL, RUN_CODE_URL} from "../constants";
+import {ACCESS_TOKEN, AUTH_BASE_URL, RUN_CODE_URL, VERIFY_EMAIL_URL} from "../constants";
 import * as Cookies from "js-cookie";
 
 
@@ -29,6 +29,12 @@ const request = (options) => {
         );
 };
 
+export function verifyEmail(email) {
+    return request({
+        url: VERIFY_EMAIL_URL + email,
+        method: 'GET'
+    });
+}
 
 export function login(loginRequest) {
     return request({
