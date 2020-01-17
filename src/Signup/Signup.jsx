@@ -42,6 +42,7 @@ export default class Signup extends React.Component {
 
     emailVerified = async (email) => {
         const {deliverable} = await verifyEmail(email);
+        return true;
         return deliverable;
     };
 
