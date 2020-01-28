@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:8080";
+export const BASE_URL = "https://rue.tcomad.tk";
 export const AUTH_BASE_URL = BASE_URL + '/auth';
 export const RUN_CODE_URL = BASE_URL + "/run";
 export const SEND_CODE_URL = BASE_URL + "/sendCode";
