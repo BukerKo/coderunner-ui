@@ -9,8 +9,19 @@ import "ace-builds/src-noconflict/theme-crimson_editor";
 import {SOURCECODE_KEY, TOOLTIP_TEXT} from "../../constants";
 import {OverlayTrigger, Tooltip} from "react-bootstrap";
 import questionImg from '../../img/ask.png'
+import {getFeatures} from "../../Service/RestService";
 
 export default class CodeEditor extends React.PureComponent {
+
+    state = {
+        features: []
+    };
+
+    componentDidMount() {
+        getFeatures().then(result => {
+            this.setState({features: result["_embedded"].features})
+        });
+    }
 
     handleChange = sourceCode => {
         localStorage.setItem(SOURCECODE_KEY, sourceCode);
@@ -33,6 +44,9 @@ export default class CodeEditor extends React.PureComponent {
     };
 
     render() {
+        const {features} = this.state;
+        const {numberOfTries} = this.props;
+        const gatherInfoEnabled = features.length ? features.find(feature => feature.featureName === "gatherInformation").enabled : false;
         return (
             <div className={"editor_div"}>
                 <AceEditor
@@ -48,18 +62,23 @@ export default class CodeEditor extends React.PureComponent {
                     editorProps={{$blockScrolling: true}}
                     value={localStorage.getItem(SOURCECODE_KEY)}
                 />
-                <Button className="submit_button" variant="primary" type="submit" onClick={this.handleSubmit}>
-                    Run
-                </Button>
-                <OverlayTrigger
-                    placement="top"
-                    delay={{show: 250, hide: 400}}
-                    overlay={this.renderTooltip}>
-                    <Button className="send_code_button" variant="secondary" onClick={this.props.sendCode}>
-                        Send code
-                        <img className="question_mark" width="20px" src={questionImg}  alt="question mark"/>
+                <div className="d-flex button_bar ">
+                    <Button className="submit_button" variant="primary" type="submit" onClick={this.handleSubmit}>
+                        Run
                     </Button>
-                </OverlayTrigger>
+                    {gatherInfoEnabled && <Button className="number_of_tries" disabled={true} variant="outline-info">
+                        Number of tries: {numberOfTries}
+                    </Button>}
+                    <OverlayTrigger
+                        placement="top"
+                        delay={{show: 250, hide: 400}}
+                        overlay={this.renderTooltip}>
+                        <Button className="send_code_button" variant="secondary" onClick={this.props.sendCode}>
+                            Send code
+                            <img className="question_mark" width="20px" src={questionImg} alt="question mark"/>
+                        </Button>
+                    </OverlayTrigger>
+                </div>
             </div>
         )
     }

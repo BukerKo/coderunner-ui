@@ -11,14 +11,18 @@
 }
 
 .submit_button {
-    margin-top: 30px;
     width: 100px;
 }
 
-.send_code_button {
+.button_bar {
     margin-top: 30px;
+    justify-content: space-between;
+    /*margin-left: auto;*/
+    /*width: 100px;*/
+}
+
+.send_code_button {
     width: 150px;
-    float: right;
 }
 
 .question_mark {

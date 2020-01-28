@@ -1,4 +1,12 @@
-import {ACCESS_TOKEN, AUTH_BASE_URL, RUN_CODE_URL, SEND_CODE_URL, VERIFY_EMAIL_URL} from "../constants";
+import {
+    ACCESS_TOKEN,
+    AUTH_BASE_URL,
+    FEATURES_URL,
+    RUN_CODE_URL,
+    RUNINFO_URL,
+    SEND_CODE_URL,
+    VERIFY_EMAIL_URL
+} from "../constants";
 import * as Cookies from "js-cookie";
 
 
@@ -68,3 +76,16 @@ export function sendCode(data) {
     });
 }
 
+export function getFeatures() {
+    return request({
+       url: FEATURES_URL,
+       method: 'GET'
+    });
+}
+
+export function getRunInfo() {
+    return request({
+        url: RUNINFO_URL,
+        method: 'GET'
+    });
+}

@@ -6,7 +6,7 @@ import OutputContainer from "../OutputContainer/OutputContainer";
 import './StudentContent.css'
 import LoadingOverlay from "react-loading-overlay";
 import ReactLoading from "react-loading";
-import {executeCode, sendCode} from "../../Service/RestService";
+import {executeCode, getRunInfo, sendCode} from "../../Service/RestService";
 import {SOURCECODE_KEY} from "../../constants";
 
 export default class StudentContent extends React.PureComponent {
@@ -14,10 +14,22 @@ export default class StudentContent extends React.PureComponent {
     state = {
         result: {
             errors: [],
-            output: []
+            output: [],
+            numberOfTries: 0
         },
         isLoading: false
     };
+
+    componentDidMount() {
+        getRunInfo().then(numberOfTries => this.setState(prevState => ({
+                ...prevState,
+                result: {
+                    ...prevState.result,
+                    numberOfTries
+                }
+            }
+        )))
+    }
 
     handleSubmit = (className) => {
         const requestBody = {
@@ -48,6 +60,7 @@ export default class StudentContent extends React.PureComponent {
     };
 
     render() {
+        const {result} = this.state;
         return (
             <LoadingOverlay
                 styles={{
@@ -70,10 +83,11 @@ export default class StudentContent extends React.PureComponent {
                             <TaskContainer/>
                         </Col>
                         <Col className='editor-col'>
-                            <CodeEditor handleSubmit={this.handleSubmit} sendCode={this.sendCode}/>
+                            <CodeEditor numberOfTries={result.numberOfTries} handleSubmit={this.handleSubmit}
+                                        sendCode={this.sendCode}/>
                         </Col>
                         <Col className='output-col' sm={4}>
-                            <OutputContainer data={this.state.result}/>
+                            <OutputContainer data={result}/>
                         </Col>
                     </Row>
                 </Container>

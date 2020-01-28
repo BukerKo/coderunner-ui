@@ -5,9 +5,12 @@ import {Redirect, Route, withRouter} from "react-router-dom";
 import {Switch} from "react-bootstrap";
 import Login from "./Login/Login";
 import {
-    ACCESS_TOKEN, CURRENT_PROVIDER,
+    ACCESS_TOKEN,
+    CURRENT_PROVIDER,
     CURRENT_ROLE,
-    CURRENT_USERNAME, FACEBOOK_APP_ID, FACEBOOK_PROVIDER,
+    CURRENT_USERNAME,
+    FACEBOOK_APP_ID,
+    FACEBOOK_PROVIDER,
     INITIAL_CODE,
     ROLE_USER,
     SOURCECODE_KEY
@@ -22,17 +25,17 @@ class App extends React.Component {
 
     componentDidMount() {
         window.FB.init({
-            appId      : FACEBOOK_APP_ID,
-            status     : true,
-            xfbml      : true,
-            version    : 'v2.7' // or v2.6, v2.5, v2.4, v2.3
+            appId: FACEBOOK_APP_ID,
+            status: true,
+            xfbml: true,
+            version: 'v2.7' // or v2.6, v2.5, v2.4, v2.3
         });
         const params = new URLSearchParams(window.location.search);
         const token = params.get("token");
         const role = params.get("role");
         const username = params.get("username");
         const provider = params.get("provider");
-         if (token && role && username && provider) {
+        if (token && role && username && provider) {
             this.handleLogin(token, role, username, provider);
         }
     }
@@ -72,28 +75,28 @@ class App extends React.Component {
         }
     };
 
-    render() {
-        return (
-            <div className="app">
-                <Toolbar username={Cookies.get(CURRENT_USERNAME)} handleLogout={this.handleLogout} />
-                <Switch>
-                        <Route exact path={["/login", "/"]} >
-                            <Login handleLogin={this.handleLogin} isLoggedIn={this.isLoggedIn}/>
-                        </Route>
-                        <Route exact path="/signup" component={Signup} >
-                            <Signup handleLogin={this.handleLogin}/>
-                        </Route>
-                        <Route exact path="/student" render={() => (
-                            this.isLoggedIn() ? (
-                                <StudentContent handleLogout={this.handleLogout}/>
-                            ) : (
-                                <Redirect to="/login"/>
-                            )
-                        )}/>
-                    </Switch>
-            </div>
-        );
-    }
+render() {
+    return (
+        <div className="app">
+            <Toolbar username={Cookies.get(CURRENT_USERNAME)} handleLogout={this.handleLogout}/>
+            <Switch>
+                <Route exact path={["/login", "/"]}>
+                    <Login handleLogin={this.handleLogin} isLoggedIn={this.isLoggedIn}/>
+                </Route>
+                <Route exact path="/signup" component={Signup}>
+                    <Signup handleLogin={this.handleLogin}/>
+                </Route>
+                <Route exact path="/student" render={() => (
+                    this.isLoggedIn() ? (
+                        <StudentContent handleLogout={this.handleLogout}/>
+                    ) : (
+                        <Redirect to="/login"/>
+                    )
+                )}/>
+            </Switch>
+        </div>
+    );
+}
 }
 
 export default withRouter(App);
