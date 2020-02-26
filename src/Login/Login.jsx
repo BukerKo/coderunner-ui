@@ -21,7 +21,7 @@ class Login extends React.Component {
         if (this.props.location.search.includes('confirmed=true')) {
             alert('Successfully confirmed! Please login');
         }
-        if (this.props.match.params.verifyEmail) {
+        if (this.props.location.search.includes('verifyEmail=true')) {
             alert('Successfully signed up, please verify email by opening link in your mailbox!');
         }
     }
