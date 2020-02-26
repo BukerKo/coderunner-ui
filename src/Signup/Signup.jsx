@@ -1,9 +1,10 @@
 import * as React from "react";
 import {Button, Form} from "react-bootstrap";
-import {signup, verifyEmail} from "../Service/RestService";
+import {signup} from "../Service/RestService";
 import './Signup.css'
+import {withRouter} from "react-router-dom";
 
-export default class Signup extends React.Component {
+class Signup extends React.Component {
 
     state = {
         firstName: '',
@@ -21,8 +22,6 @@ export default class Signup extends React.Component {
             alert('All fields should be filled');
         } else if (password !== repeatPassword) {
             alert('Password confirmation does not match actual password')
-        } else if (!await this.emailVerified(email)) {
-            alert('Use existing email')
         } else {
             const username = firstName + ' ' + lastName;
             const signupRequest = {
@@ -31,19 +30,15 @@ export default class Signup extends React.Component {
                 email
             };
             signup(signupRequest)
-                .then(response => {
-                    const {accessToken, role, username, provider} = response;
-                    this.props.handleLogin(accessToken, role, username, provider);
+                .then(() => {
+                    this.props.history.push({
+                        pathname: '/',
+                        search: '?verifyEmail=true'
+                    })
                 }).catch(error => {
                 alert(error.message || 'Sorry! Something went wrong. Please try again!');
             });
         }
-    };
-
-    emailVerified = async (email) => {
-        const {deliverable} = await verifyEmail(email);
-        return true;
-        return deliverable;
     };
 
     handleChange = (event) => {
@@ -89,3 +84,5 @@ export default class Signup extends React.Component {
         );
     }
 }
+
+export default withRouter(Signup);

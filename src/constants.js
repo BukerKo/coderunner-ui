@@ -6,7 +6,6 @@ export const FEATURES_URL = BASE_URL + "/feature";
 export const RUNINFO_URL = BASE_URL + "/runInfo";
 export const OAUTH2_REDIRECT_URI = 'https://coderunner.tcomad.tk/login';
 export const FACEBOOK_AUTH_URL = BASE_URL + '/oauth2/authorize/facebook?redirect_uri=' + OAUTH2_REDIRECT_URI;
-export const VERIFY_EMAIL_URL = 'https://api.trumail.io/v2/lookups/json?email=';
 
 export const SOURCECODE_KEY = "sourceCode";
 

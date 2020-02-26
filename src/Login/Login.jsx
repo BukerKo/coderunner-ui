@@ -18,13 +18,17 @@ class Login extends React.Component {
         if (this.props.isLoggedIn()) {
             this.props.history.push("/student");
         }
+        if (this.props.location.search.includes('confirmed=true')) {
+            alert('Successfully confirmed! Please login');
+        }
+        if (this.props.match.params.verifyEmail) {
+            alert('Successfully signed up, please verify email by opening link in your mailbox!');
+        }
     }
 
     handleChange = (event) => {
         event.preventDefault();
-
-        let {id, value} = event.currentTarget;
-
+        const {id, value} = event.currentTarget;
         this.setState({[id]: value});
     };
 
@@ -43,7 +47,7 @@ class Login extends React.Component {
                 this.props.handleLogin(accessToken, role, username, provider);
             }).catch(error => {
             if (error.status === 401) {
-                alert('Your Username or Password is incorrect. Please try again!');
+                alert('Your Email or Password is incorrect. Please try again!');
             } else {
                 alert(error.message || 'Sorry! Something went wrong. Please try again!')
             }
@@ -54,7 +58,7 @@ class Login extends React.Component {
         return (
             <div className="login">
                 <h1 className="login-title">Login</h1>
-                <SocialLogin />
+                <SocialLogin/>
                 <div className="or-separator">
                     <span className="or-text">OR</span>
                 </div>
@@ -81,7 +85,7 @@ class SocialLogin extends React.Component {
         return (
             <div className="social-login">
                 <a className="btn-social btn-block social-btn facebook" href={FACEBOOK_AUTH_URL}>
-                    <img src={fbLogo} alt="Facebook" /> Log in with Facebook</a>
+                    <img src={fbLogo} alt="Facebook"/>Log in with Facebook</a>
             </div>
         );
     }
