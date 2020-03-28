@@ -19,7 +19,7 @@ export default class CodeEditor extends React.PureComponent {
 
     componentDidMount() {
         getFeatures().then(result => {
-            this.setState({features: result["_embedded"].features})
+            this.setState({features: result})
         });
     }
 
