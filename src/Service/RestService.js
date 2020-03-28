@@ -1,7 +1,6 @@
 import {
     ACCESS_TOKEN,
-    AUTH_BASE_URL,
-    FEATURES_URL,
+    AUTH_BASE_URL, FEATURES_URL,
     RUN_CODE_URL,
     RUNINFO_URL,
     SEND_CODE_URL
@@ -44,6 +43,14 @@ export function login(loginRequest) {
     });
 }
 
+export function applyFeatures(featuresRequest) {
+    return request({
+        url: FEATURES_URL + "/apply",
+        method: 'POST',
+        body: JSON.stringify(featuresRequest)
+    });
+}
+
 export function signup(signupRequest) {
     return request({
         url: AUTH_BASE_URL + "/signup",
@@ -70,7 +77,7 @@ export function sendCode(data) {
 
 export function getFeatures() {
     return request({
-        url: FEATURES_URL,
+        url: FEATURES_URL + "/get",
         method: 'GET'
     });
 }

@@ -11,7 +11,7 @@ import {
     CURRENT_USERNAME,
     FACEBOOK_APP_ID,
     FACEBOOK_PROVIDER,
-    INITIAL_CODE,
+    INITIAL_CODE, ROLE_ADMIN,
     ROLE_USER,
     SOURCECODE_KEY
 } from "./constants";
@@ -19,6 +19,7 @@ import * as Cookies from "js-cookie";
 
 import Signup from "./Signup/Signup";
 import Toolbar from "./Toolbar/Toolbar";
+import Admin from "./Admin/Admin";
 
 
 class App extends React.Component {
@@ -42,6 +43,10 @@ class App extends React.Component {
 
     isLoggedIn = () => {
         return !!Cookies.get(ACCESS_TOKEN)
+    };
+
+    isAdmin = () => {
+        return Cookies.get(CURRENT_ROLE) === ROLE_ADMIN;
     };
 
     handleLogout = () => {
@@ -89,6 +94,13 @@ render() {
                 <Route exact path="/student" render={() => (
                     this.isLoggedIn() ? (
                         <StudentContent handleLogout={this.handleLogout}/>
+                    ) : (
+                        <Redirect to="/login"/>
+                    )
+                )}/>
+                <Route exact path="/admin" render={() => (
+                    this.isLoggedIn() && this.isAdmin() ? (
+                        <Admin/>
                     ) : (
                         <Redirect to="/login"/>
                     )
