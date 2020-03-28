@@ -1,7 +1,6 @@
 import {
     ACCESS_TOKEN,
-    AUTH_BASE_URL, BASE_URL,
-    FEATURES_URL,
+    AUTH_BASE_URL, FEATURES_URL,
     RUN_CODE_URL,
     RUNINFO_URL,
     SEND_CODE_URL
@@ -46,7 +45,7 @@ export function login(loginRequest) {
 
 export function applyFeatures(featuresRequest) {
     return request({
-        url: BASE_URL + "/features/apply",
+        url: FEATURES_URL + "/apply",
         method: 'POST',
         body: JSON.stringify(featuresRequest)
     });

@@ -7,7 +7,7 @@ import LoadingOverlay from "react-loading-overlay";
 
 import './Admin.css'
 
-class Admin extends React.Component {
+class Admin extends React.PureComponent {
 
   state = {
     data: [],
@@ -29,7 +29,6 @@ class Admin extends React.Component {
   handleChange = (event) => {
     const {id} = event.currentTarget;
     this.getValue(id).enabled = event.target.checked;
-    this.forceUpdate();
   };
 
   getValue(id) {
@@ -57,7 +56,7 @@ class Admin extends React.Component {
             <input type="checkbox"
                    id={item.id}
                    key={item.id}
-                   checked={this.getValue(item.id).enabled}
+                   defaultChecked={this.getValue(item.id).enabled}
                    onChange={this.handleChange}/>
               <span className="slider"/>
           </label>
