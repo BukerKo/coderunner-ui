@@ -40,12 +40,14 @@ class Login extends React.Component {
             alert('Username and password should not be empty');
             return;
         }
-
+        this.props.setLoading(true);
         login({usernameOrEmail: usernameOrEmail, password: password})
             .then(response => {
+                this.props.setLoading(false);
                 const {accessToken, role, username, provider} = response;
                 this.props.handleLogin(accessToken, role, username, provider);
             }).catch(error => {
+            this.props.setLoading(false);
             if (error.status === 401) {
                 alert('Your Email or Password is incorrect. Please try again!');
             } else {
