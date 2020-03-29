@@ -58,7 +58,7 @@ class Admin extends React.PureComponent {
                    key={item.id}
                    defaultChecked={this.getValue(item.id).enabled}
                    onChange={this.handleChange}/>
-              <span className="slider"/>
+              <span className="slider round"/>
           </label>
         </div>
     );
