@@ -78,6 +78,9 @@ class App extends React.Component {
         if (role === ROLE_USER) {
             this.props.history.push('/student');
         }
+        if (role === ROLE_ADMIN) {
+            this.props.history.push('/admin');
+        }
     };
 
 render() {
