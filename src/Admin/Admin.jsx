@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Button, Form} from "react-bootstrap";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {applyFeatures, getFeatures} from "../Service/RestService";
 
 import './Admin.css'
@@ -69,6 +69,12 @@ class Admin extends React.PureComponent {
                   Save
                 </Button>
               </Form>
+              <hr/>
+              <Link to={"/student"}>
+              <Button className="button" variant="primary">
+                Go to student's page
+              </Button>
+              </Link>
             </div>
     );
   }

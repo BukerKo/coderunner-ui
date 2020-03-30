@@ -118,6 +118,7 @@ class App extends React.Component {
                 <Route exact path={["/login", "/"]}>
                   <Login handleLogin={this.handleLogin}
                          isLoggedIn={this.isLoggedIn}
+                         isAdmin={this.isAdmin}
                          setLoading={this.setLoading}/>
                 </Route>
                 <Route exact path="/signup" component={Signup}>
