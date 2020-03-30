@@ -1,9 +1,7 @@
 import * as React from "react";
-import {Button, Container, Form} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 import {withRouter} from "react-router-dom";
 import {applyFeatures, getFeatures} from "../Service/RestService";
-import ReactLoading from "react-loading";
-import LoadingOverlay from "react-loading-overlay";
 
 import './Admin.css'
 
@@ -11,17 +9,16 @@ class Admin extends React.PureComponent {
 
   state = {
     data: [],
-    isLoading: false,
   };
 
   componentDidMount() {
-    this.setState({isLoading: true});
+    this.props.setLoading(true);
     getFeatures()
     .then((response) => {
-      this.setState({isLoading: false, data: response});
-
+      this.props.setLoading(false);
+      this.setState({data: response});
     }).catch(error => {
-      this.setState({isLoading: false});
+      this.props.setLoading(false);
       alert(error.message || 'Sorry! Something went wrong. Please try again!')
     });
   }
@@ -37,13 +34,13 @@ class Admin extends React.PureComponent {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({isLoading: true});
+    this.props.setLoading(true);
     applyFeatures(this.state.data)
     .then(() => {
-      this.setState({isLoading: false});
+      this.props.setLoading(false);
       alert("Settings applied")
     }).catch(error => {
-      this.setState({isLoading: false});
+      this.props.setLoading(false);
       alert(error.message || 'Sorry! Something went wrong. Please try again!')
     });
   };
@@ -64,21 +61,6 @@ class Admin extends React.PureComponent {
     );
 
     return (
-        <LoadingOverlay
-            styles={{
-              overlay: (base) => ({
-                ...base,
-                background: "rgba(0, 0, 0, 0)"
-              })
-            }}
-            active={this.state.isLoading}
-            spinner={
-              <div className="loader">
-                <ReactLoading type={"spin"} color={"black"}/>
-              </div>
-            }
-        >
-          <Container>
             <div className="admin">
               <Form onSubmit={this.handleSubmit} autoComplete='off' noValidate>
                 {listItems}
@@ -88,8 +70,6 @@ class Admin extends React.PureComponent {
                 </Button>
               </Form>
             </div>
-          </Container>
-        </LoadingOverlay>
     );
   }
 }

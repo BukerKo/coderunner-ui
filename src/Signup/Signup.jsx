@@ -29,13 +29,16 @@ class Signup extends React.Component {
                 password,
                 email
             };
+            this.props.setLoading(true);
             signup(signupRequest)
                 .then(() => {
+                    this.props.setLoading(false);
                     this.props.history.push({
                         pathname: '/',
                         search: '?verifyEmail=true'
                     })
                 }).catch(error => {
+                this.props.setLoading(false);
                 alert(error.message || 'Sorry! Something went wrong. Please try again!');
             });
         }
