@@ -24,6 +24,7 @@ import Signup from "./Signup/Signup";
 import Toolbar from "./Toolbar/Toolbar";
 import Admin from "./Admin/Admin";
 import Container from "react-bootstrap/Container";
+import Restore from "./RestorePassword/Restore";
 
 class App extends React.Component {
 
@@ -123,6 +124,9 @@ class App extends React.Component {
                 <Route exact path="/signup" component={Signup}>
                   <Signup handleLogin={this.handleLogin}
                           setLoading={this.setLoading}/>
+                </Route>
+                <Route exact path="/restore" component={Restore}>
+                  <Restore setLoading={this.setLoading}/>
                 </Route>
                 <Route exact path="/student" render={() => (
                     this.isLoggedIn() ? (
