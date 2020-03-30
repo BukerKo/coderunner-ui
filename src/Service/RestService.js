@@ -43,6 +43,22 @@ export function login(loginRequest) {
     });
 }
 
+export function requestRestore(restoreRequest) {
+    return request({
+        url: AUTH_BASE_URL + "/requestRestore",
+        method: 'POST',
+        body: JSON.stringify(restoreRequest)
+    });
+}
+
+export function confirmRestore(confirmRestore) {
+    return request({
+        url: AUTH_BASE_URL + "/confirmRestore",
+        method: 'POST',
+        body: JSON.stringify(confirmRestore)
+    });
+}
+
 export function applyFeatures(featuresRequest) {
     return request({
         url: FEATURES_URL + "/apply",

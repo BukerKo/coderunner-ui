@@ -1,0 +1,13 @@
+.restore {
+    width: 400px;
+    padding: 35px;
+    margin: 50px auto auto;
+    text-align: center;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+}
+
+.button {
+    margin-bottom: 10px;
+    width: 100%;
+}
+

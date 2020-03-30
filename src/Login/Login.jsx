@@ -81,6 +81,8 @@ class Login extends React.Component {
                         Login
                     </Button>
                 </Form>
+                <span className="signup-link"><Link to="/restore">Restore password</Link></span>
+                <br/>
                 <span className="signup-link">New user? <Link to="/signup">Sign up!</Link></span>
             </div>
         );
