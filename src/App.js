@@ -110,10 +110,10 @@ class App extends React.Component {
               </div>
             }
         >
+          <Toolbar username={Cookies.get(CURRENT_USERNAME)}
+                   handleLogout={this.handleLogout}/>
           <Container>
             <div className="app">
-              <Toolbar username={Cookies.get(CURRENT_USERNAME)}
-                       handleLogout={this.handleLogout}/>
               <Switch>
                 <Route exact path={["/login", "/"]}>
                   <Login handleLogin={this.handleLogin}
