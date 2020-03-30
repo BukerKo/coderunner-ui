@@ -1,6 +1,11 @@
 .editor_div {
-    height: 100%;
+    height: calc(100vh - 5rem);
     align-content: space-between;
+}
+
+.wrapper {
+    min-height: 150px;
+    height: calc(100% - 80px);
 }
 
 .ace_editor {
@@ -8,6 +13,11 @@
     border-bottom-right-radius: 10px;
     border: #ececec 2px solid;
     border-top: none;
+}
+
+.number_of_tries {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .submit_button {

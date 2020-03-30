@@ -49,19 +49,21 @@ export default class CodeEditor extends React.PureComponent {
         const gatherInfoEnabled = features.length ? features.find(feature => feature.featureName === "gatherInformation").enabled : false;
         return (
             <div className={"editor_div"}>
-                <AceEditor
-                    mode="java"
-                    theme="crimson_editor"
-                    showPrintMargin={false}
-                    fontSize={22}
-                    width={"100%"}
-                    height={"90%"}
-                    onChange={this.handleChange}
-                    enableBasicAutocompletion={true}
-                    enableLiveAutocompletion={true}
-                    editorProps={{$blockScrolling: true}}
-                    value={localStorage.getItem(SOURCECODE_KEY)}
-                />
+                <div className={"wrapper"}>
+                    <AceEditor
+                        mode="java"
+                        theme="crimson_editor"
+                        showPrintMargin={false}
+                        fontSize={22}
+                        width={"100%"}
+                        height={"100%"}
+                        onChange={this.handleChange}
+                        enableBasicAutocompletion={true}
+                        enableLiveAutocompletion={true}
+                        editorProps={{$blockScrolling: true}}
+                        value={localStorage.getItem(SOURCECODE_KEY)}
+                    />
+                </div>
                 <div className="d-flex button_bar ">
                     <Button className="submit_button" variant="primary" type="submit" onClick={this.handleSubmit}>
                         Run
