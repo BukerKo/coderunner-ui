@@ -57,7 +57,7 @@ export default class StudentContent extends React.PureComponent {
     const {result} = this.state;
     return (
         <Row>
-          <Col className='task-col' sm={2}>
+          <Col className='task-col' md={2}>
             <TaskContainer/>
           </Col>
           <Col className='editor-col'>
@@ -65,7 +65,7 @@ export default class StudentContent extends React.PureComponent {
                         handleSubmit={this.handleSubmit}
                         sendCode={this.sendCode}/>
           </Col>
-          <Col className='output-col' sm={4}>
+          <Col className='output-col' md={3}>
             <OutputContainer data={result}/>
           </Col>
         </Row>
