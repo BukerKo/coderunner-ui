@@ -5,3 +5,13 @@
 .custom-switch {
     padding-left: 0;
 }
+
+.out_div {
+    transition: 300ms all ease;
+    opacity: 0;
+    will-change: opacity;
+}
+
+.show {
+    opacity: 1;
+}
