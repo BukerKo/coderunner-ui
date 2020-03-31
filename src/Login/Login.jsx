@@ -42,7 +42,7 @@ class Login extends React.Component {
         const {usernameOrEmail, password} = this.state;
 
         if (!usernameOrEmail || !password) {
-            alert('Username and password should not be empty');
+            alert('Email and password should not be empty');
             return;
         }
         this.props.setLoading(true);
