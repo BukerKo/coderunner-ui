@@ -40,6 +40,6 @@
 @media (max-width: 768px) {
     .editor_div {
         min-height: 400px;
-        height: calc(55vh);
+        height: calc(61vh);
     }
 }

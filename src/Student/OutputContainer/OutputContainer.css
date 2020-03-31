@@ -8,6 +8,12 @@
     position: absolute;
 }
 
+@media (max-width: 768px) {
+    .output {
+        padding-top:0;
+    }
+}
+
 .errors {
     color: red;
 }

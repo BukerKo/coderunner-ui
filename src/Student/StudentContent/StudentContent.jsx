@@ -13,6 +13,7 @@ export default class StudentContent extends React.PureComponent {
     result: {
       errors: [],
       output: [],
+      show: true,
       numberOfTries: 0
     }
   };
@@ -34,10 +35,12 @@ export default class StudentContent extends React.PureComponent {
       className
     };
     this.props.setLoading(true);
+    this.setState({show: false});
     executeCode(requestBody)
     .then(result => {
       this.props.setLoading(false);
       this.setState({
+        show: true,
         result,
       });
     });
@@ -66,7 +69,8 @@ export default class StudentContent extends React.PureComponent {
                         sendCode={this.sendCode}/>
           </Col>
           <Col className='output-col' md={3}>
-            <OutputContainer data={result}/>
+            <div className={this.state.show ? 'out_div show' : 'out_div'}>
+              <OutputContainer data={result}/></div>
           </Col>
         </Row>
     )
