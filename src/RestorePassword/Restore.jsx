@@ -55,7 +55,7 @@ class Restore extends React.PureComponent {
                     this.props.setLoading(false);
                     alert(error.message
                         || 'Sorry! Something went wrong. Please try again!');
-                    this.props.history.push('/login');
+                    this.props.history.push('/restore');
                 });
             }
             else {
