@@ -16,7 +16,7 @@ class Login extends React.Component {
 
     componentDidMount() {
         if (this.props.isLoggedIn()) {
-            if(this.props.isAdmin) {
+            if(this.props.isAdmin()) {
                 this.props.history.push("/admin");
             }
             else {
@@ -94,7 +94,8 @@ class SocialLogin extends React.Component {
         return (
             <div className="social-login">
                 <a className="btn-social btn-block social-btn facebook" href={FACEBOOK_AUTH_URL}>
-                    <img src={fbLogo} alt="Facebook"/>Log in with Facebook</a>
+                    <img className="facebook_image" src={fbLogo} alt="Facebook"/>
+                    <div className="facebook_text">Log in with Facebook</div></a>
             </div>
         );
     }

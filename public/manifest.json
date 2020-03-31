@@ -1,6 +1,12 @@
 {
-  "short_name": "Coderunner",
-  "name": "Coderunner",
+  "short_name": "CodeRunner",
+  "name": "CodeRunner",
+  "version": "1.0",
+  "theme_color": "#343A40",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
   "icons": [
     {
       "src": "favicon.ico",
@@ -17,9 +23,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }

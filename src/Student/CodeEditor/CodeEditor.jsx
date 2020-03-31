@@ -69,7 +69,7 @@ export default class CodeEditor extends React.PureComponent {
                         Run
                     </Button>
                     {gatherInfoEnabled && <Button className="number_of_tries" disabled={true} variant="outline-info">
-                        Number of tries: {numberOfTries}
+                        Try #{numberOfTries}
                     </Button>}
                     <OverlayTrigger
                         placement="top"
