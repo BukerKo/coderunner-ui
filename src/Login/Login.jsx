@@ -29,6 +29,11 @@ class Login extends React.Component {
         if (this.props.location.search.includes('verifyEmail=true')) {
             alert('Successfully signed up, please verify email by opening link in your mailbox!');
         }
+        const params = new URLSearchParams(window.location.search);
+        const error = params.get("error");
+        if(error) {
+            alert(error);
+        }
     }
 
     handleChange = (event) => {
