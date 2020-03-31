@@ -1,10 +1,11 @@
 .output {
-    width: 100%;
+    width: 95%;
     word-break: break-word;
     padding-right: 5%;
     font-family: Segoe UI, serif;
     font-size: 28px;
     padding-top:50px;
+    position: absolute;
 }
 
 .errors {

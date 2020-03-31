@@ -27,8 +27,6 @@
 .button_bar {
     margin-top: 30px;
     justify-content: space-between;
-    /*margin-left: auto;*/
-    /*width: 100px;*/
 }
 
 .send_code_button {
@@ -37,4 +35,11 @@
 
 .question_mark {
     margin-left: 15px;
+}
+
+@media (max-width: 768px) {
+    .editor_div {
+        min-height: 400px;
+        height: calc(55vh);
+    }
 }

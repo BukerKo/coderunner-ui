@@ -1,5 +1,5 @@
 .login {
-    width: 400px;
+    max-width: 400px;
     padding: 35px;
     margin: 50px auto auto;
     text-align: center;
@@ -7,6 +7,7 @@
 }
 
 .btn-social {
+    width: 100%;
     display: inline-block;
     font-weight: 400;
     text-align: center;
@@ -52,15 +53,11 @@
     font-size: 16px;
 }
 
-.social-btn img {
-    height: 32px;
+.facebook_image {
     float: left;
-    margin-top: 10px;
-}
-
-.social-btn.facebook img {
     height: 24px;
     margin-left: 3px;
+    margin-top: 10px;
 }
 
 .signup-link {
@@ -81,8 +78,7 @@
 }
 
 .or-text {
-    position: absolute;
-    left: 46%;
+    position: center;
     top: 0;
     background: #fff;
     padding: 10px;
@@ -94,3 +90,17 @@
     width: 100%;
 }
 
+@media (max-width: 768px) {
+    .facebook_text {
+        display: none;
+    }
+    .facebook_image {
+        float: none;
+        height: 64px;
+        padding-bottom: 20px;
+        margin-top: 0;
+    }
+    .btn-social {
+        border: 0 solid #e8e8e8;
+    }
+}
