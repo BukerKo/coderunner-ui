@@ -45,7 +45,7 @@
     }
     .editor_div {
         min-height: 400px;
-        height: calc(61vh);
-        margin-bottom: 30px;
+        height: calc(64vh);
+        margin-bottom: 10px;
     }
 }
