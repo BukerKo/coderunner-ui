@@ -34,11 +34,13 @@ export const lightTheme = [
   '--button: royalblue',
   '--background: white',
   '--navbar-color: #ececec',
+  '--shadow-color: rgba(0, 0, 0, 0.27)',
 ];
 
 export const darkTheme = [
   '--text: rgb(255, 255, 255)',
   '--button: #327886',
   '--background: #2D2D2D',
-  '--navbar-color: black',
+  '--navbar-color: rgb(30,30,30)',
+  '--shadow-color: rgba(0, 0, 0, 0.8)',
 ];

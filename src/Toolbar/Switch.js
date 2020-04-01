@@ -11,7 +11,7 @@ export default function Switch () {
         <input type="checkbox"
                onChange={() => toggle()}
                checked={dark}/>
-        <span className="slider round"/>
+        <span className="moon round"/>
       </label>
   );
 }
