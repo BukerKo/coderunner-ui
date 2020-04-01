@@ -4,12 +4,13 @@ import ThemeContext from "../Context/ThemeContext";
 import "./Switch.css"
 
 export default function Switch () {
-  const {toggle} = useContext(ThemeContext);
+  const {toggle, dark} = useContext(ThemeContext);
 
   return (
       <label className="switch switch-toolbar">
         <input type="checkbox"
-               onChange={() => toggle()}/>
+               onChange={() => toggle()}
+               checked={dark}/>
         <span className="slider round"/>
       </label>
   );
