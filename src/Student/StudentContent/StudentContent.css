@@ -6,6 +6,15 @@
     padding-left: 0;
 }
 
+.task-col {
+    color: var(--text) !important;
+    transition: all .5s ease;
+}
+
+.output-col {
+    color: var(--text) !important;
+}
+
 .out_div {
     transition: 300ms all ease;
     opacity: 0;

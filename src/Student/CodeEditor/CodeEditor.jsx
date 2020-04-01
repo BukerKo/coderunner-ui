@@ -1,15 +1,12 @@
-import * as React from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
 import "./CodeEditor.css"
-import AceEditor from "react-ace";
 
-import "ace-builds/src-noconflict/mode-java";
-import "ace-builds/src-noconflict/ext-language_tools";
-import "ace-builds/src-noconflict/theme-crimson_editor";
 import {SOURCECODE_KEY, TOOLTIP_TEXT} from "../../constants";
 import {OverlayTrigger, Tooltip} from "react-bootstrap";
 import questionImg from '../../img/ask.png'
 import {getFeatures} from "../../Service/RestService";
+import Editor from "./Editor";
 
 export default class CodeEditor extends React.PureComponent {
 
@@ -22,10 +19,6 @@ export default class CodeEditor extends React.PureComponent {
             this.setState({features: result})
         });
     }
-
-    handleChange = sourceCode => {
-        localStorage.setItem(SOURCECODE_KEY, sourceCode);
-    };
 
     handleSubmit = event => {
         event.preventDefault();
@@ -50,22 +43,10 @@ export default class CodeEditor extends React.PureComponent {
         return (
             <div className={"editor_div"}>
                 <div className={"wrapper"}>
-                    <AceEditor
-                        mode="java"
-                        theme="crimson_editor"
-                        showPrintMargin={false}
-                        fontSize={22}
-                        width={"100%"}
-                        height={"100%"}
-                        onChange={this.handleChange}
-                        enableBasicAutocompletion={true}
-                        enableLiveAutocompletion={true}
-                        editorProps={{$blockScrolling: true}}
-                        value={localStorage.getItem(SOURCECODE_KEY)}
-                    />
+                    <Editor/>
                 </div>
                 <div className="d-flex button_bar ">
-                    <Button className="submit_button" variant="primary" type="submit" onClick={this.handleSubmit}>
+                    <Button className="submit_button" variant="secondary" type="submit" onClick={this.handleSubmit}>
                         Run
                     </Button>
                     {gatherInfoEnabled && <Button className="number_of_tries" disabled={true} variant="outline-info">

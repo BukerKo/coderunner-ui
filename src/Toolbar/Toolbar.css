@@ -1,12 +1,20 @@
 .navbar {
-    min-height: 4rem;
-    background: #ececec;
+    height: 5rem;
+    background: var(--navbar-color);
+    transition: all .5s ease;
+}
+
+.hint {
+    transition: all .5s ease;
+    color: var(--text) !important;
 }
 
 .navbar-brand {
+    color: var(--text) !important;
     display: inline-block;
     width: 85%;
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
+    transition: all .5s ease;
 }

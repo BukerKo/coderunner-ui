@@ -1,7 +1,6 @@
 import * as React from "react";
 import {Button, Form} from "react-bootstrap";
 import {withRouter} from "react-router-dom";
-import './Restore.css'
 import {confirmRestore, requestRestore} from "../Service/RestService";
 
 class Restore extends React.PureComponent {
@@ -66,7 +65,7 @@ class Restore extends React.PureComponent {
 
     render() {
         return (
-            <div className="restore">
+            <div className="form">
                 <h1 className="login-title">Restore password</h1>
                 <Form onSubmit={this.handleSubmit} autoComplete='off' noValidate>
                     <Form.Group controlId="value">
@@ -81,7 +80,7 @@ class Restore extends React.PureComponent {
                                       onChange={this.handleChange}/>
                         </Form.Group> : null }
 
-                    <Button className="button" variant="primary" type="submit">
+                    <Button className="button" variant="secondary" type="submit">
                         Next
                     </Button>
                 </Form>
