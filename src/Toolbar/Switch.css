@@ -1,4 +1,52 @@
 .switch-toolbar {
   margin: 15px;
   min-width: 50px;
+  float: left;
+}
+
+.moon {
+  text-align: right;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.moon:before {
+  position: absolute;
+  content:url('../img/sun.ico');
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  background-color: transparent;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .moon {
+  background-color: var(--button);
+}
+
+input:focus + .moon {
+  box-shadow: 0 0 1px var(--button);
+}
+
+input:checked + .moon:before {
+  content:url('../img/moon.ico');
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+.moon.round {
+  border-radius: 30px;
+}
+
+.moon.round:before {
+  border-radius: 50%;
 }

@@ -1,11 +1,13 @@
 .editor_div {
     height: calc(100vh - 7rem);
     align-content: space-between;
+    max-height: 1000px;
 }
 
 .wrapper {
     min-height: 150px;
     height: calc(100% - 80px);
+    box-shadow: 0 1px 11px var(--shadow-color);
 }
 
 .number_of_tries {
@@ -38,9 +40,12 @@
 }
 
 @media (max-width: 768px) {
+    .question_mark {
+        display: none;
+    }
     .editor_div {
         min-height: 400px;
         height: calc(61vh);
-        margin-bottom: 25px;
+        margin-bottom: 30px;
     }
 }

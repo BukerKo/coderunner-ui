@@ -1,7 +1,6 @@
 .output {
-    width: 93%;
+    width: 90%;
     word-break: break-word;
-    padding-right: 5%;
     font-family: Segoe UI, serif;
     font-size: 28px;
     padding-top:50px;
@@ -12,6 +11,7 @@
 @media (max-width: 768px) {
     .output {
         padding-top:0;
+        padding-bottom: 20px;
     }
 }
 

@@ -12,7 +12,7 @@ export default class Toolbar extends React.PureComponent {
   };
 
   render() {
-    let toolbarText = "Coderunner application";
+    let toolbarText = "CodeRunner";
     const {username} = this.props;
     if (username) {
       toolbarText = "Hello, " + username + "!";
@@ -23,9 +23,6 @@ export default class Toolbar extends React.PureComponent {
           <Navbar.Brand>
               {toolbarText}
           </Navbar.Brand>
-          <div className={"hint"}>
-            Dark
-          </div>
           <Navbar.Text>
             <Switch/>
           </Navbar.Text>
