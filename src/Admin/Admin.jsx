@@ -47,7 +47,7 @@ class Admin extends React.PureComponent {
 
   render() {
     const listItems = this.state.data.map((item) =>
-        <div className="container">
+        <div className="container" key={item.id}>
           {item.displayName}
           <label className="switch">
             <input type="checkbox"
@@ -61,17 +61,17 @@ class Admin extends React.PureComponent {
     );
 
     return (
-            <div className="admin">
+            <div className="form">
               <Form onSubmit={this.handleSubmit} autoComplete='off' noValidate>
                 {listItems}
-                <Button className="button" variant="primary"
+                <Button className="button" variant="secondary"
                         type="submit">
                   Save
                 </Button>
               </Form>
               <hr/>
               <Link to={"/student"}>
-              <Button className="button" variant="primary">
+              <Button className="button" variant="secondary">
                 Go to student's page
               </Button>
               </Link>

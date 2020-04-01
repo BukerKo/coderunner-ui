@@ -17,16 +17,28 @@ export const CURRENT_PROVIDER = 'currentProvider';
 export const FACEBOOK_APP_ID = '848358615623604';
 
 export const FACEBOOK_PROVIDER = "facebook";
-export const LOCAL_PROVIDER = "local";
 
 export const ROLE_ADMIN = 'ROLE_ADMIN';
 export const ROLE_USER = 'ROLE_USER';
 
 export const TOOLTIP_TEXT = "On clicking this button code will be sent to your email";
 
-export const INITIAL_CLASS_NAME = "HelloWorld";
 export const INITIAL_CODE ="public class HelloWorld {\n" +
     "    public static void main(String[] args) {\n" +
     "        System.out.println(\"Hello world!\");\n" +
     "    }\n" +
     "}";
+
+export const lightTheme = [
+  '--text: #000',
+  '--button: royalblue',
+  '--background: white',
+  '--navbar-color: #ececec',
+];
+
+export const darkTheme = [
+  '--text: rgb(255, 255, 255)',
+  '--button: #327886',
+  '--background: #2D2D2D',
+  '--navbar-color: black',
+];

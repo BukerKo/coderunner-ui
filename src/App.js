@@ -24,7 +24,7 @@ import Signup from "./Signup/Signup";
 import Toolbar from "./Toolbar/Toolbar";
 import Admin from "./Admin/Admin";
 import Container from "react-bootstrap/Container";
-import Restore from "./RestorePassword/Restore";
+import Restore from "./Restore/Restore";
 
 class App extends React.Component {
 
@@ -107,7 +107,7 @@ class App extends React.Component {
             active={this.state.isLoading}
             spinner={
               <div className="loader">
-                <ReactLoading type={"spin"} color={"black"}/>
+                <ReactLoading type={"spin"} color={"royalblue"}/>
               </div>
             }
         >
@@ -122,11 +122,11 @@ class App extends React.Component {
                          isAdmin={this.isAdmin}
                          setLoading={this.setLoading}/>
                 </Route>
-                <Route exact path="/signup" component={Signup}>
+                <Route exact path="/signup">
                   <Signup handleLogin={this.handleLogin}
                           setLoading={this.setLoading}/>
                 </Route>
-                <Route exact path="/restore" component={Restore}>
+                <Route exact path="/restore">
                   <Restore setLoading={this.setLoading}/>
                 </Route>
                 <Route exact path="/student" render={() => (

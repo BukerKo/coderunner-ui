@@ -1,5 +1,5 @@
 .editor_div {
-    height: calc(100vh - 5rem);
+    height: calc(100vh - 7rem);
     align-content: space-between;
 }
 
@@ -8,19 +8,15 @@
     height: calc(100% - 80px);
 }
 
-.ace_editor {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border: #ececec 2px solid;
-    border-top: none;
-}
-
 .number_of_tries {
     margin-left: 10px;
     margin-right: 10px;
+    color: var(--button);
 }
 
 .submit_button {
+    background-color: var(--button);
+    border: var(--background);
     width: 100px;
 }
 
@@ -30,16 +26,21 @@
 }
 
 .send_code_button {
+    background-color: var(--button);
+    border: var(--background);
     width: 150px;
 }
 
 .question_mark {
     margin-left: 15px;
+    width: 15px;
+    height: 15px;
 }
 
 @media (max-width: 768px) {
     .editor_div {
         min-height: 400px;
         height: calc(61vh);
+        margin-bottom: 25px;
     }
 }

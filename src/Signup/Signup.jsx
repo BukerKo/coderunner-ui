@@ -51,7 +51,7 @@ class Signup extends React.Component {
 
     render() {
         return (
-            <div className="register">
+            <div className="form">
                 <h1 className={"signup-title"}>Sign up</h1>
                 <Form onSubmit={this.handleSubmit} autoComplete='off'>
                     <Form.Group controlId="firstName">
@@ -79,7 +79,7 @@ class Signup extends React.Component {
                         <Form.Control type="email" placeholder="example@email.com" onChange={this.handleChange}/>
                     </Form.Group>
 
-                    <Button className="signup-button" variant="primary" type="submit">
+                    <Button className="signup-button" variant="secondary" type="submit">
                         Sign up
                     </Button>
                 </Form>

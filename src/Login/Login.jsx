@@ -68,7 +68,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="login">
+            <div className="form">
                 <h1 className="login-title">Login</h1>
                 <SocialLogin/>
                 <div className="or-separator">
@@ -82,7 +82,7 @@ class Login extends React.Component {
                     <Form.Group controlId="password">
                         <Form.Control type="password" placeholder="Password" onChange={this.handleChange}/>
                     </Form.Group>
-                    <Button className="login-button" variant="primary" type="submit">
+                    <Button className="login-button" variant="secondary" type="submit">
                         Login
                     </Button>
                 </Form>
