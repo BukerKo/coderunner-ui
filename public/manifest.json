@@ -2,7 +2,7 @@
   "short_name": "CodeRunner",
   "name": "CodeRunner",
   "version": "1.0",
-  "theme_color": "#343A40",
+  "theme_color": "#2D2D2D",
   "background_color": "#FFFFFF",
   "display": "standalone",
   "scope": "/",
