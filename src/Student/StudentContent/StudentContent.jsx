@@ -61,7 +61,7 @@ export default class StudentContent extends React.PureComponent {
     return (
         <Row>
           <Col className='task-col' md={2}>
-            <TaskContainer/>
+            <TaskContainer setLoading={this.props.setLoading}/>
           </Col>
           <Col className='editor-col'>
             <CodeEditor numberOfTries={result.numberOfTries}

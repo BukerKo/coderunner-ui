@@ -1,5 +1,5 @@
 import {
-    ACCESS_TOKEN,
+    ACCESS_TOKEN, ADMIN_URL,
     AUTH_BASE_URL, FEATURES_URL,
     RUN_CODE_URL,
     RUNINFO_URL,
@@ -101,6 +101,13 @@ export function getFeatures() {
 export function getRunInfo() {
     return request({
         url: RUNINFO_URL,
+        method: 'GET'
+    });
+}
+
+export function getTask() {
+    return request({
+        url: ADMIN_URL + "/getTask",
         method: 'GET'
     });
 }
