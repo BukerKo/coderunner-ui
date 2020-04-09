@@ -6,3 +6,11 @@ hr {
     margin: 1em 0;
     padding: 0;
 }
+
+.table {
+    max-width: 800px;
+    padding: 35px;
+    margin: 50px auto auto;
+    text-align: center;
+    box-shadow: 0 1px 11px var(--shadow-color);
+}

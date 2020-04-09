@@ -119,3 +119,10 @@ export function getTask() {
         method: 'GET'
     });
 }
+
+export function getResults() {
+    return request({
+        url: ADMIN_URL + "/results",
+        method: 'GET'
+    });
+}

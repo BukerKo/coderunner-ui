@@ -106,6 +106,7 @@ class App extends React.Component {
             }
         >
           <Toolbar username={Cookies.get(CURRENT_USERNAME)}
+                   role={Cookies.get(CURRENT_ROLE)}
                    handleLogout={this.handleLogout}/>
           <Container>
             <div className="app">

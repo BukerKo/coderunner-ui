@@ -4,8 +4,7 @@ import './Toolbar.css'
 import {Button, Dropdown} from "react-bootstrap";
 
 import Switch from './Switch';
-import * as Cookies from "js-cookie";
-import {CURRENT_ROLE, ROLE_ADMIN} from "../constants";
+import {ROLE_ADMIN} from "../constants";
 import {applyFeatures, getFeatures} from "../Service/RestService";
 
 export default class Toolbar extends React.PureComponent {
@@ -15,21 +14,23 @@ export default class Toolbar extends React.PureComponent {
   };
 
   componentDidMount() {
-    //this.props.setLoading(true);
-    getFeatures()
-    .then((response) => {
-      //this.props.setLoading(false);
-      this.setState({data: response});
-    }).catch(error => {
-      //this.props.setLoading(false);
-      alert(error.message || 'Sorry! Something went wrong. Please try again!')
-    });
+    const {username} = this.props;
+    if (username) {
+      getFeatures()
+      .then((response) => {
+        this.setState({data: response});
+      }).catch(error => {
+        alert(error.message || 'Sorry! Something went wrong. Please try again!')
+      });
+    }
   }
 
   handleChange = (event) => {
     const {id} = event.currentTarget;
     this.getValue(id).enabled = event.target.checked;
-    applyFeatures(this.state.data);
+    applyFeatures(this.state.data).catch((error) =>
+        alert(error || "Something went wrong. Can't update settings")
+    );
   };
 
   getValue(id) {
@@ -42,7 +43,7 @@ export default class Toolbar extends React.PureComponent {
 
   render() {
     let toolbarText = "CodeRunner";
-    const {username} = this.props;
+    const {username, role} = this.props;
     if (username) {
       toolbarText = "Hello, " + username + "!";
     }
@@ -77,10 +78,14 @@ export default class Toolbar extends React.PureComponent {
                 <div className={"center"}>
                   <Switch/>
                 </div>
-                {Cookies.get(CURRENT_ROLE) === ROLE_ADMIN &&
+                {role === ROLE_ADMIN &&
                 <div className={"controls"}>
                   {listItems}
-                  <Dropdown.Item className={"item"} href="/admin">Set task</Dropdown.Item>
+                  <Dropdown.Item className={"item"} href="/admin?section=task">Set
+                    task</Dropdown.Item>
+                  <Dropdown.Item className={"item"}
+                                 href="/admin?section=results">View
+                    results</Dropdown.Item>
                 </div>
                 }
                 <div className={"center"}>

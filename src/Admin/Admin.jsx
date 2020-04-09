@@ -1,27 +1,44 @@
 import * as React from "react";
 import {Button, Form} from "react-bootstrap";
 import {Link, withRouter} from "react-router-dom";
-import {getTask, setTask} from "../Service/RestService";
+import {getResults, getTask, setTask} from "../Service/RestService";
 
 import './Admin.css'
+import Table from "react-bootstrap/Table";
 
 class Admin extends React.PureComponent {
 
   state = {
     taskText: "",
+    results: [],
+    section: "",
   };
 
   componentDidMount() {
-    this.props.setLoading(true);
-    getTask().then(response => {
-      this.props.setLoading(false);
-      this.setState({taskText: response.task});
-    }).catch((error) => {
-          this.props.setLoading(false);
-          alert(error.message || "Something went wrong, can't load task")
-        }
-    );
-
+    const params = new URLSearchParams(window.location.search);
+    const section = params.get("section");
+    this.setState({section: section});
+    if (section === "task") {
+      this.props.setLoading(true);
+      getTask().then(response => {
+        this.props.setLoading(false);
+        this.setState({taskText: response.task});
+      }).catch((error) => {
+            this.props.setLoading(false);
+            alert(error.message || "Something went wrong, can't load task")
+          }
+      );
+    } else {
+      this.props.setLoading(true);
+      getResults().then(response => {
+        this.props.setLoading(false);
+        this.setState({results: response});
+      }).catch((error) => {
+            this.props.setLoading(false);
+            alert(error.message || "Something went wrong, can't load results")
+          }
+      );
+    }
   }
 
   handleChange = (event) => {
@@ -43,27 +60,66 @@ class Admin extends React.PureComponent {
   };
 
   render() {
+    const items = this.state.results.map(item => {
+      return (
+          <tr key={item.id}>
+            <td>{item.user.username}</td>
+            <td>{item.user.email}</td>
+            <td><a href={item.pathToLastAttempt}>Open</a></td>
+          </tr>
+      )
+    });
 
     return (
-        <div className="form">
-          <Form onSubmit={this.handleSubmit} autoComplete='off' noValidate>
-            <Form.Group controlId="taskText">
-              <Form.Label>Task</Form.Label>
-              <Form.Control as="textarea" rows="5"
-                            onChange={this.handleChange}
-                            value={this.state.taskText}/>
-            </Form.Group>
-            <Button className="button" variant="secondary"
-                    type="submit">
-              Save
-            </Button>
-          </Form>
-          <hr/>
-          <Link to={"/student"}>
-            <Button className="button" variant="secondary">
-              Go to student's page
-            </Button>
-          </Link>
+
+        <div>
+          {this.state.section === "results" &&
+          <div className="table">
+            <Table responsive>
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Mail</th>
+                <th>Result</th>
+              </tr>
+              </thead>
+              <tbody>
+              {items}
+              </tbody>
+            </Table>
+            <hr/>
+            <Link to={"/student"}>
+              <Button className="button" variant="secondary">
+                Go to student's page
+              </Button>
+            </Link>
+          </div>
+          }
+
+          {this.state.section !== "results" &&
+          <div className="form">
+            <Form onSubmit={this.handleSubmit} autoComplete='off' noValidate>
+              <Form.Group controlId="taskText">
+                <Form.Label>Task</Form.Label>
+                <Form.Control as="textarea" rows="5"
+                              onChange={this.handleChange}
+                              value={this.state.taskText}/>
+              </Form.Group>
+              <Button className="button" variant="secondary"
+                      type="submit">
+                Save
+              </Button>
+
+            </Form>
+
+            <hr/>
+            <Link to={"/student"}>
+              <Button className="button" variant="secondary">
+                Go to student's page
+              </Button>
+            </Link>
+          </div>
+          }
         </div>
     );
   }
