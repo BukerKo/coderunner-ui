@@ -1,17 +1,3 @@
-.text {
-    max-width: 60%;
-    float: left;
-    padding-bottom: 15px;
-}
-
-.container {
-    padding-left: 20px;
-    padding-bottom: 15px;
-    text-align: left;
-    font-size: 1.2em;
-    color: var(--text);
-}
-
 hr {
     display: block;
     height: 1px;
@@ -21,8 +7,27 @@ hr {
     padding: 0;
 }
 
-@media (max-width: 768px) {
-    .container {
-        text-align: center;
-    }
+.table-responsive {
+    overflow-y: visible;
+}
+
+.form-control {
+    background-color: var(--background);
+    color: var(--text);
+}
+
+th {
+    color: var(--text);
+}
+
+tr {
+    color: var(--text);
+}
+
+.table {
+    max-width: 800px;
+    padding: 35px;
+    margin: 50px auto auto;
+    text-align: center;
+    box-shadow: 0 1px 11px var(--shadow-color);
 }
