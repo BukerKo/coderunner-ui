@@ -13,8 +13,6 @@ class Admin extends React.PureComponent {
 
   componentDidMount() {
     this.props.setLoading(true);
-    const params = new URLSearchParams(window.location.search);
-    const section = params.get("section");
     getTask().then(response => {
       this.props.setLoading(false);
       this.setState({taskText: response.task});
