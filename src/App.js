@@ -15,7 +15,6 @@ import {
   FACEBOOK_APP_ID,
   FACEBOOK_PROVIDER,
   INITIAL_CODE, ROLE_ADMIN,
-  ROLE_USER,
   SOURCECODE_KEY
 } from "./constants";
 import * as Cookies from "js-cookie";
@@ -87,12 +86,7 @@ class App extends React.Component {
     Cookies.set(CURRENT_USERNAME, username);
     Cookies.set(CURRENT_PROVIDER, provider);
     localStorage.setItem(SOURCECODE_KEY, INITIAL_CODE);
-    if (role === ROLE_USER) {
-      this.props.history.push('/student');
-    }
-    if (role === ROLE_ADMIN) {
-      this.props.history.push('/admin');
-    }
+    this.props.history.push('/student');
   };
 
   render() {

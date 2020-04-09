@@ -1,11 +1,10 @@
 .switch-toolbar {
-  margin: 15px;
-  min-width: 50px;
-  float: left;
+  position: relative;
+  width: 60px;
+  height: 34px;
 }
 
 .moon {
-  text-align: right;
   position: absolute;
   cursor: pointer;
   top: 0;

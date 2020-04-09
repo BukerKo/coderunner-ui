@@ -67,6 +67,14 @@ export function applyFeatures(featuresRequest) {
     });
 }
 
+export function setTask(task) {
+    return request({
+        url: ADMIN_URL + "/setTask",
+        method: 'POST',
+        body: task
+    });
+}
+
 export function signup(signupRequest) {
     return request({
         url: AUTH_BASE_URL + "/signup",
