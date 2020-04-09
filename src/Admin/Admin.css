@@ -7,6 +7,14 @@ hr {
     padding: 0;
 }
 
+th {
+    color: var(--text);
+}
+
+tr {
+    color: var(--text);
+}
+
 .table {
     max-width: 800px;
     padding: 35px;
