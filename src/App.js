@@ -52,18 +52,20 @@ class App extends React.Component {
   }
 
   loadFeatures() {
-    this.setState({isLoading: true});
-    getFeatures()
-    .then((response) => {
-      this.setState({isLoading: false, features: response});
-    }).catch(error => {
-      this.setState({isLoading: false});
-      alert(error.message || 'Sorry! Something went wrong. Please try again!')
-    });
+    if(Cookies.get(ACCESS_TOKEN)) {
+      this.setState({isLoading: true});
+      getFeatures()
+      .then((response) => {
+        this.setState({isLoading: false, features: response});
+      }).catch(error => {
+        this.setState({isLoading: false});
+        alert(error.message || 'Sorry! Something went wrong. Please try again!')
+      });
+    }
   }
 
   isLoggedIn = () => {
-    return !!Cookies.get(ACCESS_TOKEN)
+    return Cookies.get(ACCESS_TOKEN)
   };
 
   isAdmin = () => {
