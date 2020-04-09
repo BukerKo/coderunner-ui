@@ -5,36 +5,20 @@ import {Button, Dropdown} from "react-bootstrap";
 
 import Switch from './Switch';
 import {ROLE_ADMIN} from "../constants";
-import {applyFeatures, getFeatures} from "../Service/RestService";
+import {applyFeatures} from "../Service/RestService";
 
 export default class Toolbar extends React.PureComponent {
-
-  state = {
-    data: [],
-  };
-
-  componentDidMount() {
-    const {username} = this.props;
-    if (username) {
-      getFeatures()
-      .then((response) => {
-        this.setState({data: response});
-      }).catch(error => {
-        alert(error.message || 'Sorry! Something went wrong. Please try again!')
-      });
-    }
-  }
 
   handleChange = (event) => {
     const {id} = event.currentTarget;
     this.getValue(id).enabled = event.target.checked;
-    applyFeatures(this.state.data).catch((error) =>
+    applyFeatures(this.props.features).catch((error) =>
         alert(error || "Something went wrong. Can't update settings")
     );
   };
 
   getValue(id) {
-    return this.state.data.find(o => o.id.toString() === id.toString());
+    return this.props.features.find(o => o.id.toString() === id.toString());
   }
 
   handleLogout = () => {
@@ -48,7 +32,7 @@ export default class Toolbar extends React.PureComponent {
       toolbarText = "Hello, " + username + "!";
     }
 
-    const listItems = this.state.data.map((item) =>
+    const listItems = this.props.features.map((item) =>
         <div className="switches" key={item.id}>
           <div className="switches-text">
             {item.displayName}
@@ -79,7 +63,7 @@ export default class Toolbar extends React.PureComponent {
                   <Switch/>
                 </div>
                 {role === ROLE_ADMIN &&
-                <div className={"controls"}>
+                <div>
                   {listItems}
                   <Dropdown.Item className={"item"} href="/admin?section=task">Set
                     task</Dropdown.Item>
@@ -89,8 +73,10 @@ export default class Toolbar extends React.PureComponent {
                 </div>
                 }
                 <div className={"center"}>
+                  {username &&
                   <Button variant="secondary"
                           onClick={this.handleLogout}>Logout</Button>
+                  }
                 </div>
               </Dropdown.Menu>
             </Dropdown>

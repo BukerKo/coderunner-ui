@@ -1,7 +1,13 @@
 import * as React from "react";
 import {Button, Form} from "react-bootstrap";
 import {Link, withRouter} from "react-router-dom";
-import {getResults, getTask, setTask} from "../Service/RestService";
+import {
+  deleteResult,
+  getResults,
+  getTask,
+  setTask
+} from "../Service/RestService";
+import trashImg from '../img/trash.svg'
 
 import './Admin.css'
 import Table from "react-bootstrap/Table";
@@ -59,6 +65,20 @@ class Admin extends React.PureComponent {
     });
   };
 
+  deleteItem = (id) => {
+    this.props.setLoading(true);
+    deleteResult({
+      id: id
+    }).then(() => {
+      this.props.setLoading(false);
+      this.componentDidMount();
+    }).catch((error) => {
+          this.props.setLoading(false);
+          alert(error.message || "Something went wrong!");
+        }
+    );
+  };
+
   render() {
     const items = this.state.results.map(item => {
       return (
@@ -66,6 +86,14 @@ class Admin extends React.PureComponent {
             <td>{item.user.username}</td>
             <td>{item.user.email}</td>
             <td><a href={item.pathToLastAttempt}>Open</a></td>
+            <td>
+              <div style={{textAlign: "center", minWidth: "50px"}}>
+                <Button variant="danger"
+                        onClick={() => this.deleteItem(item.id)}><img
+                    height={16} width={14} src={trashImg}
+                    alt={"remove"}/></Button>
+              </div>
+            </td>
           </tr>
       )
     });
@@ -81,6 +109,7 @@ class Admin extends React.PureComponent {
                 <th>Name</th>
                 <th>Mail</th>
                 <th>Result</th>
+                <th>Actions</th>
               </tr>
               </thead>
               <tbody>

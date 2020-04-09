@@ -126,3 +126,11 @@ export function getResults() {
         method: 'GET'
     });
 }
+
+export function deleteResult(data) {
+    return request({
+        url: ADMIN_URL + "/deleteResult",
+        method: 'POST',
+        body: JSON.stringify(data)
+    });
+}
