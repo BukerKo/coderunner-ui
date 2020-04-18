@@ -11,6 +11,7 @@ import trashImg from '../img/trash.svg'
 
 import './Admin.css'
 import Table from "react-bootstrap/Table";
+import Pagination from 'react-responsive-pagination';
 
 class Admin extends React.PureComponent {
 
@@ -18,6 +19,10 @@ class Admin extends React.PureComponent {
     taskText: "",
     results: [],
     section: "",
+    count: 0,
+    activePage: 1,
+    search: "",
+    screenWidth: 0,
   };
 
   componentDidMount() {
@@ -36,15 +41,47 @@ class Admin extends React.PureComponent {
       );
     } else {
       this.props.setLoading(true);
-      getResults().then(response => {
+      getResults({page: 0, search: ""}).then(response => {
         this.props.setLoading(false);
-        this.setState({results: response});
+        this.setState({results: response.content, count: response.totalPages});
       }).catch((error) => {
             this.props.setLoading(false);
             alert(error.message || "Something went wrong, can't load results")
           }
       );
     }
+    this.setState({screenWidth: window.innerWidth});
+    const resizeHandler = () => {
+      this.setState({screenWidth: window.innerWidth});
+    };
+    window.addEventListener('resize', resizeHandler);
+  }
+
+  handleSearch = () => {
+    this.setState({activePage: 1}, () => {
+      this.updateTable();
+    });
+  }
+
+  setCurrentPage = (page) => {
+    this.setState({activePage: page}, () => {
+      this.updateTable();
+    });
+  }
+
+  updateTable = () => {
+    this.props.setLoading(true);
+    getResults(
+        {page: this.state.activePage - 1, search: this.state.search}).then(
+        response => {
+          this.props.setLoading(false);
+          this.setState(
+              {results: response.content, count: response.totalPages});
+        }).catch((error) => {
+          this.props.setLoading(false);
+          alert(error.message || "Something went wrong, can't load results")
+        }
+    );
   }
 
   handleChange = (event) => {
@@ -85,6 +122,7 @@ class Admin extends React.PureComponent {
           <tr key={item.id}>
             <td>{item.user.username}</td>
             <td>{item.user.email}</td>
+            <td>{item.numberOfTries}</td>
             <td><a href={item.pathToLastAttempt}>Open</a></td>
             <td>
               <div style={{textAlign: "center", minWidth: "50px"}}>
@@ -103,19 +141,40 @@ class Admin extends React.PureComponent {
         <div>
           {this.state.section === "results" &&
           <div className="table">
+            <div className={"search"}>
+              <Form.Control as="input"
+                            id={"search"}
+                            className={"searchField"}
+                            placeholder={"Search"}
+                            onChange={this.handleChange}
+                            value={this.state.search}/>
+
+              <Button className={"searchButton"} variant="secondary"
+                      onClick={this.handleSearch}>
+                Search
+              </Button>
+            </div>
+
             <Table responsive>
               <thead>
               <tr>
                 <th>Name</th>
                 <th>Mail</th>
+                <th>Number of tries</th>
                 <th>Result</th>
-                <th>Actions</th>
+                <th>Clear statistics</th>
               </tr>
               </thead>
               <tbody>
               {items}
               </tbody>
             </Table>
+            <Pagination
+                current={this.state.activePage}
+                total={this.state.count}
+                maxWidth={this.state.screenWidth - 100}
+                onPageChange={this.setCurrentPage}
+            />
             <hr/>
             <Link to={"/student"}>
               <Button className="button" variant="secondary">

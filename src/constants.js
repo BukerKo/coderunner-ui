@@ -24,6 +24,8 @@ export const ROLE_USER = 'ROLE_USER';
 
 export const TOOLTIP_TEXT = "On clicking this button code will be sent to your email";
 
+export const ITEMS_PER_PAGE = 7;
+
 export const INITIAL_CODE ="public class HelloWorld {\n" +
     "    public static void main(String[] args) {\n" +
     "        System.out.println(\"Hello world!\");\n" +

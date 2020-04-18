@@ -1,6 +1,6 @@
 import {
     ACCESS_TOKEN, ADMIN_URL,
-    AUTH_BASE_URL, FEATURES_URL,
+    AUTH_BASE_URL, FEATURES_URL, ITEMS_PER_PAGE,
     RUN_CODE_URL,
     RUNINFO_URL,
     SEND_CODE_URL
@@ -120,9 +120,9 @@ export function getTask() {
     });
 }
 
-export function getResults() {
+export function getResults(data) {
     return request({
-        url: ADMIN_URL + "/results",
+        url: ADMIN_URL + "/results?page=" + data.page + "&size=" + ITEMS_PER_PAGE + "&username=" + encodeURIComponent(data.search),
         method: 'GET'
     });
 }
