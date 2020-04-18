@@ -87,6 +87,11 @@ class Admin extends React.PureComponent {
   handleChange = (event) => {
     const {id, value} = event.currentTarget;
     this.setState({[id]: value});
+    if (id === "search" && value === "") {
+      this.setState({activePage: 1}, () => {
+        this.updateTable();
+      });
+    }
   };
 
   handleSubmit = (event) => {
@@ -142,12 +147,13 @@ class Admin extends React.PureComponent {
           {this.state.section === "results" &&
           <div className="table">
             <div className={"search"}>
-              <Form.Control as="input"
-                            id={"search"}
-                            className={"searchField"}
-                            placeholder={"Search"}
-                            onChange={this.handleChange}
-                            value={this.state.search}/>
+              <input type="search"
+                     autoComplete="off"
+                     id={"search"}
+                     className={"searchField"}
+                     placeholder={"Search"}
+                     onChange={this.handleChange}
+                     value={this.state.search}/>
 
               <Button className={"searchButton"} variant="secondary"
                       onClick={this.handleSearch}>
@@ -160,9 +166,9 @@ class Admin extends React.PureComponent {
               <tr>
                 <th>Name</th>
                 <th>Mail</th>
-                <th>Number of tries</th>
+                <th>Tries</th>
                 <th>Result</th>
-                <th>Clear statistics</th>
+                <th>Rset</th>
               </tr>
               </thead>
               <tbody>

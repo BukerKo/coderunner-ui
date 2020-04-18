@@ -59,8 +59,13 @@ export default class Toolbar extends React.PureComponent {
                 Menu
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <div className={"center"}>
-                  <Switch/>
+                <div className="switches">
+                <div className="switches-text">
+                  Dark mode
+                </div>
+                <label className="switch">
+                <Switch/>
+                </label>
                 </div>
                 {role === ROLE_ADMIN &&
                 <div>

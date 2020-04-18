@@ -97,12 +97,3 @@ input:checked + .slider:before {
 .loader {
   color: var(--text);
 }
-
-@media (max-width: 768px) {
-  .switch {
-    float: none;
-    position: center;
-    width: 60px;
-    height: 34px;
-  }
-}
