@@ -168,7 +168,7 @@ class Admin extends React.PureComponent {
                 <th>Mail</th>
                 <th>Tries</th>
                 <th>Result</th>
-                <th>Rset</th>
+                <th>Reset</th>
               </tr>
               </thead>
               <tbody>

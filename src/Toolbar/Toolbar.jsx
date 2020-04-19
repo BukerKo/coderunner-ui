@@ -6,6 +6,7 @@ import {Button, Dropdown} from "react-bootstrap";
 import Switch from './Switch';
 import {ROLE_ADMIN} from "../constants";
 import {applyFeatures} from "../Service/RestService";
+import {LinkIcon} from "./LinkIcon";
 
 export default class Toolbar extends React.PureComponent {
 
@@ -71,10 +72,18 @@ export default class Toolbar extends React.PureComponent {
                 <div>
                   {listItems}
                   <Dropdown.Item className={"item"} href="/admin?section=task">Set
-                    task</Dropdown.Item>
+                    task
+                    <label className="switch">
+                      <LinkIcon className={"linkImg"}/>
+                    </label>
+                  </Dropdown.Item>
                   <Dropdown.Item className={"item"}
                                  href="/admin?section=results">View
-                    results</Dropdown.Item>
+                    results
+                    <label className="switch">
+                    <LinkIcon className={"linkImg"}/>
+                    </label>
+                  </Dropdown.Item>
                 </div>
                 }
                 <div className={"center"}>
