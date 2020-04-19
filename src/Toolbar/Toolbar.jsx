@@ -55,18 +55,26 @@ export default class Toolbar extends React.PureComponent {
             {toolbarText}
           </Navbar.Brand>
           <Navbar.Text>
+            {!username &&
+            <div className={"topMargin"}>
+              <label className="switch">
+                <Switch/>
+              </label>
+            </div>
+            }
+            {username &&
             <Dropdown alignRight>
               <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                 Menu
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <div className="switches">
-                <div className="switches-text">
-                  Dark mode
-                </div>
-                <label className="switch">
-                <Switch/>
-                </label>
+                  <div className="switches-text">
+                    Dark mode
+                  </div>
+                  <label className="switch">
+                    <Switch/>
+                  </label>
                 </div>
                 {role === ROLE_ADMIN &&
                 <div>
@@ -81,19 +89,18 @@ export default class Toolbar extends React.PureComponent {
                                  href="/admin?section=results">View
                     results
                     <label className="switch">
-                    <LinkIcon className={"linkImg"}/>
+                      <LinkIcon className={"linkImg"}/>
                     </label>
                   </Dropdown.Item>
                 </div>
                 }
                 <div className={"center"}>
-                  {username &&
                   <Button variant="secondary"
                           onClick={this.handleLogout}>Logout</Button>
-                  }
                 </div>
               </Dropdown.Menu>
             </Dropdown>
+            }
           </Navbar.Text>
         </Navbar>
     )
