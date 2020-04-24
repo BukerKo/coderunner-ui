@@ -20,15 +20,7 @@ class Results extends React.PureComponent {
   };
 
   componentDidMount() {
-      this.props.setLoading(true);
-      getResults({page: 0, search: ""}).then(response => {
-        this.props.setLoading(false);
-        this.setState({results: response.content, count: response.totalPages});
-      }).catch((error) => {
-            this.props.setLoading(false);
-            alert(error.message || "Something went wrong, can't load results")
-          }
-      );
+    this.updateTable();
     this.setState({screenWidth: window.innerWidth});
     const resizeHandler = () => {
       this.setState({screenWidth: window.innerWidth});
@@ -63,7 +55,7 @@ class Results extends React.PureComponent {
     );
   }
 
-  handleChange = (event) => {
+  handleSearchChange = (event) => {
     const {id, value} = event.currentTarget;
     this.setState({[id]: value});
     if (id === "search" && value === "") {
@@ -117,7 +109,7 @@ class Results extends React.PureComponent {
                      id={"search"}
                      className={"searchField"}
                      placeholder={"Search"}
-                     onChange={this.handleChange}
+                     onChange={this.handleSearchChange}
                      value={this.state.search}/>
 
               <Button className={"searchButton"} variant="secondary"

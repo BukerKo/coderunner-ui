@@ -132,7 +132,7 @@ export function getResults(data) {
 
 export function deleteResult(data) {
     return request({
-        url: ADMIN_URL + "/deleteResult",
+        url: ADMIN_URL + "/result/" + data.id,
         method: 'DELETE',
         body: JSON.stringify(data)
     });
