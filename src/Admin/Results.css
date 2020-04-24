@@ -1,0 +1,60 @@
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.table-responsive {
+    overflow-y: visible;
+}
+
+.form-control {
+    background-color: var(--background);
+    color: var(--text);
+}
+
+.page-item.disabled .page-link {
+    transition: all .5s ease;
+    background-color: var(--background);
+}
+
+.page-item.active .page-link {
+    background-color: var(--button);
+    border-color: var(--button);
+    transition: all .5s ease;
+}
+
+th {
+    color: var(--text);
+}
+
+tr {
+    color: var(--text);
+}
+
+.search {
+    display: inline-flex;
+}
+
+.searchField {
+    float: left;
+    background-color: var(--background);
+    color: var(--text);
+    transition: all .5s ease;
+}
+
+.searchButton {
+    float: right;
+    margin-left: 20px;
+}
+
+.table {
+    max-width: 800px;
+    padding: 35px;
+    margin: 20px auto auto;
+    text-align: center;
+    box-shadow: 0 1px 11px var(--shadow-color);
+}

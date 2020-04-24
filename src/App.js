@@ -14,22 +14,25 @@ import {
   CURRENT_USERNAME,
   FACEBOOK_APP_ID,
   FACEBOOK_PROVIDER,
-  INITIAL_CODE, ROLE_ADMIN,
-  ROLE_USER,
+  INITIAL_CODE,
+  ROLE_ADMIN,
   SOURCECODE_KEY
 } from "./constants";
 import * as Cookies from "js-cookie";
 
 import Signup from "./Signup/Signup";
 import Toolbar from "./Toolbar/Toolbar";
-import Admin from "./Admin/Admin";
 import Container from "react-bootstrap/Container";
 import Restore from "./Restore/Restore";
+import {getFeatures} from "./Service/RestService";
+import Results from "./Admin/Results";
+import Task from "./Admin/Task";
 
 class App extends React.Component {
 
   state = {
     isLoading: false,
+    features: [],
   };
 
   componentDidMount() {
@@ -47,10 +50,24 @@ class App extends React.Component {
     if (token && role && username && provider) {
       this.handleLogin(token, role, username, provider);
     }
+    this.loadFeatures();
+  }
+
+  loadFeatures() {
+    if(Cookies.get(ACCESS_TOKEN)) {
+      this.setState({isLoading: true});
+      getFeatures()
+      .then((response) => {
+        this.setState({isLoading: false, features: response});
+      }).catch(error => {
+        this.setState({isLoading: false});
+        alert(error.message || 'Sorry! Something went wrong. Please try again!')
+      });
+    }
   }
 
   isLoggedIn = () => {
-    return !!Cookies.get(ACCESS_TOKEN)
+    return Cookies.get(ACCESS_TOKEN)
   };
 
   isAdmin = () => {
@@ -87,12 +104,8 @@ class App extends React.Component {
     Cookies.set(CURRENT_USERNAME, username);
     Cookies.set(CURRENT_PROVIDER, provider);
     localStorage.setItem(SOURCECODE_KEY, INITIAL_CODE);
-    if (role === ROLE_USER) {
-      this.props.history.push('/student');
-    }
-    if (role === ROLE_ADMIN) {
-      this.props.history.push('/admin');
-    }
+    this.loadFeatures();
+    this.props.history.push('/editor');
   };
 
   render() {
@@ -112,7 +125,9 @@ class App extends React.Component {
             }
         >
           <Toolbar username={Cookies.get(CURRENT_USERNAME)}
-                   handleLogout={this.handleLogout}/>
+                   role={Cookies.get(CURRENT_ROLE)}
+                   handleLogout={this.handleLogout}
+                   features={this.state.features}/>
           <Container>
             <div className="app">
               <Switch>
@@ -129,7 +144,7 @@ class App extends React.Component {
                 <Route exact path="/restore">
                   <Restore setLoading={this.setLoading}/>
                 </Route>
-                <Route exact path="/student" render={() => (
+                <Route exact path="/editor" render={() => (
                     this.isLoggedIn() ? (
                         <StudentContent handleLogout={this.handleLogout}
                                         setLoading={this.setLoading}/>
@@ -137,9 +152,16 @@ class App extends React.Component {
                         <Redirect to="/login"/>
                     )
                 )}/>
-                <Route exact path="/admin" render={() => (
+                <Route exact path="/results" render={() => (
                     this.isLoggedIn() && this.isAdmin() ? (
-                        <Admin setLoading={this.setLoading}/>
+                        <Results setLoading={this.setLoading}/>
+                    ) : (
+                        <Redirect to="/login"/>
+                    )
+                )}/>
+                <Route exact path="/task" render={() => (
+                    this.isLoggedIn() && this.isAdmin() ? (
+                        <Task setLoading={this.setLoading}/>
                     ) : (
                         <Redirect to="/login"/>
                     )

@@ -1,6 +1,9 @@
 import {
-    ACCESS_TOKEN, ADMIN_URL,
-    AUTH_BASE_URL, FEATURES_URL,
+    ACCESS_TOKEN,
+    ADMIN_URL,
+    AUTH_BASE_URL,
+    FEATURES_URL,
+    ITEMS_PER_PAGE,
     RUN_CODE_URL,
     RUNINFO_URL,
     SEND_CODE_URL
@@ -67,6 +70,14 @@ export function applyFeatures(featuresRequest) {
     });
 }
 
+export function setTask(task) {
+    return request({
+        url: ADMIN_URL + "/setTask",
+        method: 'POST',
+        body: task
+    });
+}
+
 export function signup(signupRequest) {
     return request({
         url: AUTH_BASE_URL + "/signup",
@@ -109,5 +120,20 @@ export function getTask() {
     return request({
         url: ADMIN_URL + "/getTask",
         method: 'GET'
+    });
+}
+
+export function getResults(data) {
+    return request({
+        url: ADMIN_URL + "/results?page=" + data.page + "&size=" + ITEMS_PER_PAGE + "&username=" + encodeURIComponent(data.search),
+        method: 'GET'
+    });
+}
+
+export function deleteResult(data) {
+    return request({
+        url: ADMIN_URL + "/result/" + data,
+        method: 'DELETE',
+        body: JSON.stringify(data)
     });
 }

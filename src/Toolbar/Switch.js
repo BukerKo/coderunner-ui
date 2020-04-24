@@ -7,7 +7,7 @@ export default function Switch () {
   const {toggle, dark} = useContext(ThemeContext);
 
   return (
-      <label className="switch switch-toolbar">
+      <label className="switch-toolbar">
         <input type="checkbox"
                onChange={() => toggle()}
                checked={dark}/>
