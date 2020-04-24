@@ -79,14 +79,14 @@ export default class Toolbar extends React.PureComponent {
                 {role === ROLE_ADMIN &&
                 <div>
                   {listItems}
-                  <Dropdown.Item className={"item"} href="/admin?section=task">Set
+                  <Dropdown.Item className={"item"} href="/task">Set
                     task
                     <label className="switch">
                       <LinkIcon className={"linkImg"}/>
                     </label>
                   </Dropdown.Item>
                   <Dropdown.Item className={"item"}
-                                 href="/admin?section=results">View
+                                 href="/results">View
                     results
                     <label className="switch">
                       <LinkIcon className={"linkImg"}/>

@@ -21,10 +21,11 @@ import * as Cookies from "js-cookie";
 
 import Signup from "./Signup/Signup";
 import Toolbar from "./Toolbar/Toolbar";
-import Admin from "./Admin/Admin";
 import Container from "react-bootstrap/Container";
 import Restore from "./Restore/Restore";
 import {getFeatures} from "./Service/RestService";
+import Results from "./Admin/Results";
+import Task from "./Admin/Task";
 
 class App extends React.Component {
 
@@ -150,9 +151,16 @@ class App extends React.Component {
                         <Redirect to="/login"/>
                     )
                 )}/>
-                <Route exact path="/admin" render={() => (
+                <Route exact path="/results" render={() => (
                     this.isLoggedIn() && this.isAdmin() ? (
-                        <Admin setLoading={this.setLoading}/>
+                        <Results setLoading={this.setLoading}/>
+                    ) : (
+                        <Redirect to="/login"/>
+                    )
+                )}/>
+                <Route exact path="/task" render={() => (
+                    this.isLoggedIn() && this.isAdmin() ? (
+                        <Task setLoading={this.setLoading}/>
                     ) : (
                         <Redirect to="/login"/>
                     )
