@@ -67,9 +67,7 @@ class Results extends React.PureComponent {
 
   deleteItem = (id) => {
     this.props.setLoading(true);
-    deleteResult({
-      id: id
-    }).then(() => {
+    deleteResult(id).then(() => {
       this.props.setLoading(false);
       this.componentDidMount();
     }).catch((error) => {
