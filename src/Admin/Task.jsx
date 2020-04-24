@@ -66,9 +66,9 @@ class Task extends React.PureComponent {
             </Form>
 
             <hr/>
-            <Link to={"/student"}>
+            <Link to={"/editor"}>
               <Button className="button" variant="secondary">
-                Go to student's page
+                Go to editor
               </Button>
             </Link>
           </div>

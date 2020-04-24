@@ -14,7 +14,8 @@ import {
   CURRENT_USERNAME,
   FACEBOOK_APP_ID,
   FACEBOOK_PROVIDER,
-  INITIAL_CODE, ROLE_ADMIN,
+  INITIAL_CODE,
+  ROLE_ADMIN,
   SOURCECODE_KEY
 } from "./constants";
 import * as Cookies from "js-cookie";
@@ -104,7 +105,7 @@ class App extends React.Component {
     Cookies.set(CURRENT_PROVIDER, provider);
     localStorage.setItem(SOURCECODE_KEY, INITIAL_CODE);
     this.loadFeatures();
-    this.props.history.push('/student');
+    this.props.history.push('/editor');
   };
 
   render() {
@@ -143,7 +144,7 @@ class App extends React.Component {
                 <Route exact path="/restore">
                   <Restore setLoading={this.setLoading}/>
                 </Route>
-                <Route exact path="/student" render={() => (
+                <Route exact path="/editor" render={() => (
                     this.isLoggedIn() ? (
                         <StudentContent handleLogout={this.handleLogout}
                                         setLoading={this.setLoading}/>

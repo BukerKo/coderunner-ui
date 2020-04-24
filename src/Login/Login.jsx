@@ -16,7 +16,7 @@ class Login extends React.Component {
 
     componentDidMount() {
         if (this.props.isLoggedIn()) {
-            this.props.history.push("/student");
+            this.props.history.push("/editor");
         }
         if (this.props.location.search.includes('confirmed=true')) {
             alert('Successfully confirmed! Please login');

@@ -1,10 +1,7 @@
 import * as React from "react";
 import {Button} from "react-bootstrap";
 import {Link, withRouter} from "react-router-dom";
-import {
-  deleteResult,
-  getResults,
-} from "../Service/RestService";
+import {deleteResult, getResults,} from "../Service/RestService";
 import trashImg from '../img/trash.svg'
 
 import './Results.css'
@@ -150,9 +147,9 @@ class Results extends React.PureComponent {
                 onPageChange={this.setCurrentPage}
             />
             <hr/>
-            <Link to={"/student"}>
+            <Link to={"/editor"}>
               <Button className="button" variant="secondary">
-                Go to student's page
+                Go to editor
               </Button>
             </Link>
           </div>
