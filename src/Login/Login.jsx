@@ -1,10 +1,16 @@
 import * as React from "react";
 import {Button, Form} from "react-bootstrap";
 import {Link, withRouter} from "react-router-dom";
-import './Login.css'
+import './Login.css';
 import {login} from "../Service/RestService";
-import fbLogo from "../img/fb-logo.png"
-import {FACEBOOK_AUTH_URL} from "../constants";
+import fbLogo from "../img/fb-logo.png";
+import ghLogo from "../img/gh-logo.png";
+import googleLogo from "../img/google-logo.png";
+import {
+    FACEBOOK_AUTH_URL,
+    GITHUB_AUTH_URL,
+    GOOGLE_AUTH_URL
+} from "../constants";
 
 
 class Login extends React.Component {
@@ -93,9 +99,18 @@ class SocialLogin extends React.Component {
     render() {
         return (
             <div className="social-login">
-                <a className="btn-social btn-block social-btn facebook" href={FACEBOOK_AUTH_URL}>
-                    <img className="facebook_image" src={fbLogo} alt="Facebook"/>
-                    <div className="facebook_text">Log in with Facebook</div></a>
+                <a className="btn-social btn-block social-btn" href={FACEBOOK_AUTH_URL}>
+                    <img className="social-image" src={fbLogo} alt="Facebook"/>
+                    <div className="social-text">Log in with Facebook</div>
+                </a>
+                <a className="btn-social btn-block social-btn" href={GITHUB_AUTH_URL}>
+                    <img className="social-image" src={ghLogo} alt="Github"/>
+                    <div className="social-text">Log in with Github</div>
+                </a>
+                <a className="btn-social btn-block social-btn" href={GOOGLE_AUTH_URL}>
+                    <img className="social-image" src={googleLogo} alt="Google"/>
+                    <div className="social-text">Log in with Google</div>
+                </a>
             </div>
         );
     }

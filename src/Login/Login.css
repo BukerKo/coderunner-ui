@@ -45,7 +45,7 @@
     font-size: 16px;
 }
 
-.facebook_image {
+.social-image {
     float: left;
     height: 24px;
     margin-left: 3px;
@@ -90,10 +90,10 @@ a {
 }
 
 @media (max-width: 768px) {
-    .facebook_text {
+    .social-text {
         display: none;
     }
-    .facebook_image {
+    .social-image {
         float: none;
         height: 64px;
         padding-bottom: 20px;

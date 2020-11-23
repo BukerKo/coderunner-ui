@@ -9,6 +9,9 @@ export const FEATURES_URL = BASE_URL + "/features";
 export const ADMIN_URL = BASE_URL + "/admin";
 export const RUNINFO_URL = BASE_URL + "/runInfo";
 export const FACEBOOK_AUTH_URL = BASE_URL + '/oauth2/authorize/facebook?redirect_uri=' + OAUTH2_REDIRECT_URI;
+export const GITHUB_AUTH_URL = BASE_URL + '/oauth2/authorize/github?redirect_uri=' + OAUTH2_REDIRECT_URI;
+export const GOOGLE_AUTH_URL = BASE_URL + '/oauth2/authorize/google?redirect_uri=' + OAUTH2_REDIRECT_URI;
+
 
 export const SOURCECODE_KEY = "sourceCode";
 
