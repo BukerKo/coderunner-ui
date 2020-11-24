@@ -1,6 +1,7 @@
 export const BASE_URL = "https://rue.tcomad.tk";
 export const OAUTH2_REDIRECT_URI = 'https://coderunner.tcomad.tk/login';
 export const FACEBOOK_APP_ID = '848358615623604';
+export const CAPTCHA_KEY = '6LdaKOsZAAAAAKW3Eh2__CTG0ULYECzun0US_PhN';
 
 export const AUTH_BASE_URL = BASE_URL + '/auth';
 export const RUN_CODE_URL = BASE_URL + "/run";

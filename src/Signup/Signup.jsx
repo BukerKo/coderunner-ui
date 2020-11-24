@@ -1,8 +1,10 @@
 import * as React from "react";
 import {Button, Form} from "react-bootstrap";
+import ReCAPTCHA from "react-google-recaptcha";
 import {signup} from "../Service/RestService";
 import './Signup.css'
 import {withRouter} from "react-router-dom";
+import {CAPTCHA_KEY} from "../constants";
 
 class Signup extends React.Component {
 
@@ -11,14 +13,17 @@ class Signup extends React.Component {
         lastName: '',
         password: '',
         email: '',
-        repeatPassword: ''
+        repeatPassword: '',
+        captchaValue: null
     };
 
     handleSubmit = async (event) => {
         event.preventDefault();
-        const {firstName, lastName, password, repeatPassword, email} = this.state;
+        const {captchaValue, firstName, lastName, password, repeatPassword, email} = this.state;
 
-        if (!(firstName && lastName && password && repeatPassword && email)) {
+        if (!captchaValue) {
+            alert('Please submit captcha');
+        } else if (!(firstName && lastName && password && repeatPassword && email)) {
             alert('All fields should be filled');
         } else if (password !== repeatPassword) {
             alert('Password confirmation does not match actual password')
@@ -46,8 +51,12 @@ class Signup extends React.Component {
 
     handleChange = (event) => {
         const {target} = event;
-        this.setState({[target.id]: target.value})
+        this.setState({[target.id]: target.value});
     };
+
+    handleCaptchaChange = (captchaValue) => {
+        this.setState({captchaValue});
+    }
 
     render() {
         return (
@@ -78,6 +87,8 @@ class Signup extends React.Component {
                         <Form.Label column={false}>Email</Form.Label>
                         <Form.Control type="email" placeholder="example@email.com" onChange={this.handleChange}/>
                     </Form.Group>
+
+                    <ReCAPTCHA style={{ display: "inline-block" }} sitekey={CAPTCHA_KEY} onChange={this.handleCaptchaChange}/>
 
                     <Button className="signup-button" variant="secondary" type="submit">
                         Sign up
