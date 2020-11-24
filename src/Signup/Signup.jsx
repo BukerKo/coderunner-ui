@@ -5,21 +5,19 @@ import {signup} from "../Service/RestService";
 import './Signup.css'
 import {withRouter} from "react-router-dom";
 import {CAPTCHA_KEY} from "../constants";
+import {useState} from "react";
 
-class Signup extends React.Component {
+function Signup() {
 
-    state = {
-        firstName: '',
-        lastName: '',
-        password: '',
-        email: '',
-        repeatPassword: '',
-        captchaValue: null
-    };
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [repeatPassword, setRepeatPassword] = useState('');
+    const [captchaValue, setCaptchaValue] = useState(null);
 
-    handleSubmit = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const {captchaValue, firstName, lastName, password, repeatPassword, email} = this.state;
 
         if (!captchaValue) {
             alert('Please submit captcha');
@@ -49,54 +47,50 @@ class Signup extends React.Component {
         }
     };
 
-    handleChange = (event) => {
-        const {target} = event;
-        this.setState({[target.id]: target.value});
-    };
+    return (
+        <div className="form">
+            <h1 className={"signup-title"}>Sign up</h1>
+            <Form onSubmit={handleSubmit} autoComplete='off'>
+                <Form.Group controlId="firstName">
+                    <Form.Label column={false}>First name</Form.Label>
+                    <Form.Control type="username" placeholder="First name"
+                                  onChange={e => setFirstName(e.target.value)}/>
+                </Form.Group>
 
-    handleCaptchaChange = (captchaValue) => {
-        this.setState({captchaValue});
-    }
+                <Form.Group controlId="lastName">
+                    <Form.Label column={false}>Last name</Form.Label>
+                    <Form.Control type="username" placeholder="Last name"
+                                  onChange={e => setLastName(e.target.value)}/>
+                </Form.Group>
 
-    render() {
-        return (
-            <div className="form">
-                <h1 className={"signup-title"}>Sign up</h1>
-                <Form onSubmit={this.handleSubmit} autoComplete='off'>
-                    <Form.Group controlId="firstName">
-                        <Form.Label column={false}>First name</Form.Label>
-                        <Form.Control type="username" placeholder="First name" onChange={this.handleChange}/>
-                    </Form.Group>
+                <Form.Group controlId="password">
+                    <Form.Label column={false}>Password</Form.Label>
+                    <Form.Control type="password" placeholder="Password"
+                                  onChange={e => setPassword(e.target.value)}/>
+                </Form.Group>
 
-                    <Form.Group controlId="lastName">
-                        <Form.Label column={false}>Last name</Form.Label>
-                        <Form.Control type="username" placeholder="Last name" onChange={this.handleChange}/>
-                    </Form.Group>
+                <Form.Group controlId="repeatPassword">
+                    <Form.Label column={false}>Confirm password</Form.Label>
+                    <Form.Control type="password" placeholder="Password"
+                                  onChange={e => setRepeatPassword(e.target.value)}/>
+                </Form.Group>
 
-                    <Form.Group controlId="password">
-                        <Form.Label column={false}>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" onChange={this.handleChange}/>
-                    </Form.Group>
+                <Form.Group controlId="email">
+                    <Form.Label column={false}>Email</Form.Label>
+                    <Form.Control type="email" placeholder="example@email.com"
+                                  onChange={e => setEmail(e.target.value)}/>
+                </Form.Group>
 
-                    <Form.Group controlId="repeatPassword">
-                        <Form.Label column={false}>Confirm password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" onChange={this.handleChange}/>
-                    </Form.Group>
+                <ReCAPTCHA style={{display: "inline-block"}}
+                           sitekey={CAPTCHA_KEY}
+                           onChange={e => setCaptchaValue(e.target.value)}/>
 
-                    <Form.Group controlId="email">
-                        <Form.Label column={false}>Email</Form.Label>
-                        <Form.Control type="email" placeholder="example@email.com" onChange={this.handleChange}/>
-                    </Form.Group>
-
-                    <ReCAPTCHA style={{ display: "inline-block" }} sitekey={CAPTCHA_KEY} onChange={this.handleCaptchaChange}/>
-
-                    <Button className="signup-button" variant="secondary" type="submit">
-                        Sign up
-                    </Button>
-                </Form>
-            </div>
-        );
-    }
+                <Button className="signup-button" variant="secondary" type="submit">
+                    Sign up
+                </Button>
+            </Form>
+        </div>
+    );
 }
 
 export default withRouter(Signup);
