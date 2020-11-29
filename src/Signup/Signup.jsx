@@ -7,7 +7,7 @@ import {withRouter} from "react-router-dom";
 import {CAPTCHA_KEY} from "../constants";
 import {useState} from "react";
 
-function Signup() {
+const Signup = () => {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -83,7 +83,7 @@ function Signup() {
 
                 <ReCAPTCHA style={{display: "inline-block"}}
                            sitekey={CAPTCHA_KEY}
-                           onChange={e => setCaptchaValue(e.target.value)}/>
+                           onChange={value => setCaptchaValue(value)}/>
 
                 <Button className="signup-button" variant="secondary" type="submit">
                     Sign up
