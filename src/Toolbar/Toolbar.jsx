@@ -4,7 +4,7 @@ import './Toolbar.css'
 import {Button, Dropdown} from "react-bootstrap";
 
 import Switch from './Switch';
-import {ROLE_ADMIN} from "../constants";
+import {LIQPAY_URL, ROLE_ADMIN} from "../constants";
 import {applyFeatures} from "../Service/RestService";
 import {LinkIcon} from "./LinkIcon";
 
@@ -94,6 +94,12 @@ export default class Toolbar extends React.PureComponent {
                   </Dropdown.Item>
                 </div>
                 }
+                <Dropdown.Item className={"item"} href={LIQPAY_URL}>
+                  Support dev
+                  <label className="switch">
+                    <LinkIcon className={"linkImg"}/>
+                  </label>
+                </Dropdown.Item>
                 <div className={"center"}>
                   <Button variant="secondary"
                           onClick={this.handleLogout}>Logout</Button>
